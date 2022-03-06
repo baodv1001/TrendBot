@@ -2,7 +2,6 @@ from distutils.command.build import build
 from os import link
 from turtle import delay, title
 from selenium import webdriver
-from bs4 import BeautifulSoup
 import json
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -70,7 +69,7 @@ for i in range(len(links)):
         }
     )
 
-print(res)
+print(json.dumps(res, ensure_ascii=False))
 
 delay(5)
     
