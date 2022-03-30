@@ -1,0 +1,78 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - chào em
+      - hello em
+      - hi em
+      - em ơi, cho anh hỏi
+      - bot ơi
+      - cho mình hỏi chút
+
+  - intent: goodbye
+    examples: |
+      - good bye
+      - see you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: ask_ability
+    examples: |
+      - em có thể làm những gì nhỉ
+      - em có chức năng gì?
+      - em giúp gì được anh không?
+      - em có thể giúp gì cho anh?
+      - em biết làm gì?
+      - em hỗ trợ anh như thế nào?
+      - cho anh xem các chức năng của em
+
+  - intent: thankyou
+    examples: |
+      - cảm ơn em nhá
+      - thanks em nha
+      - cảm ơn nha
+      - good job
+      - thank you
+      - cảm ơn bot nha
+      - thanks bot
+      - cảm ơn
+      - thank you so much
+      - great! Thanks
+
+  - intent: praise
+    examples: |
+      - bot giỏi quá
+      - great
+      - awsome
+      - bot làm tốt lắm
+      - ui giỏi thế
+      - bot thông minh
+      - đẹp trai đấy
+      - Ênm đệnp léăm
+
+  - intent: decry
+    examples: |
+      - quá tệ
+      - ngu ngốc
+      - chả biết gì cả
+      - ngu thật
+      - dở ghê
+      - có thế mà cũng không biết
+      - kém cói
+
+  - intent: ask_for_dinner
+    examples: |
+      - tối nay anh nên ăn gì nhỉ
+      - tối nay ăn gì bây giờ nhỉ
+      - chọn giúp t bữa tối phát
+      - ăn tối nào
+      - tiểu nhị, chọn món
+      - bữa tối
+      - ăn gì bây giờ
+      - chọn giúp anh một quán ăn

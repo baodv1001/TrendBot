@@ -1,0 +1,15 @@
+version: "3.1"
+
+stories:
+  - story: ask dinner path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_for_dinner
+      - action: action_recommend
+      - intent: praise
+      - action: utter_happy
+      - intent: thankyou
+      - action: utter_noworries
+      - intent: goodbye
+      - action: utter_goodbye
