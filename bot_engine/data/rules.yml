@@ -1,0 +1,37 @@
+version: "3.1"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: Happy anytime the user praise
+    steps:
+      - intent: praise
+      - action: utter_happy
+
+  - rule: No worries anytime the user say thanks
+    steps:
+      - intent: thankyou
+      - action: utter_noworries
+
+  - rule: Show ability the user ask
+    steps:
+      - intent: ask_ability
+      - action: utter_show_ability
+
+  - rule: Sorry when user decry
+    steps:
+      - intent: decry
+      - action: utter_sorry
+
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback

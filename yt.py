@@ -2,7 +2,6 @@ from time import sleep
 from turtle import title
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
 import json
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
@@ -18,7 +17,6 @@ def main():
     driver.get('https://www.youtube.com/feed/trending/vn')
     driver.maximize_window()
     content = driver.page_source.encode('utf-8').strip()
-    soup = BeautifulSoup(content, 'lxml')
 
     amount = 10
     titles = []
@@ -26,7 +24,6 @@ def main():
     urls = []
     postedDate = []
     titlesElement = driver.find_elements(by=By.ID, value = 'video-title')
-    viewsElement = soup.findAll('span', class_ = "style-scope ytd-video-meta-block")
 
     for i in range(amount): 
         titles.append(titlesElement[i].text)

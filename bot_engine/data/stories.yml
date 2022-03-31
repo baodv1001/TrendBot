@@ -1,0 +1,9 @@
+version: "3.1"
+
+stories:
+  - story: ask top trending path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_for_tiktok_trending
+      - action: action_top_trending
