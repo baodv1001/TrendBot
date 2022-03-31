@@ -12,15 +12,14 @@ nlu:
 
   - intent: goodbye
     examples: |
-      - good bye
-      - see you later
-      - good night
+      - tạm biệt 
+      - hẹn gặp lại
+      - ngủ ngon
+      - chúc ngủ ngon
+      - ngày mới tốt lành
+      - hẹn gặp sau 
       - bye
-      - goodbye
-      - have a nice day
-      - see you around
       - bye bye
-      - see you later
 
   - intent: ask_ability
     examples: |
@@ -47,9 +46,10 @@ nlu:
 
   - intent: praise
     examples: |
+      - hay quá
       - bot giỏi quá
       - great
-      - awsome
+      - awesome
       - bot làm tốt lắm
       - ui giỏi thế
       - bot thông minh
@@ -66,13 +66,12 @@ nlu:
       - có thế mà cũng không biết
       - kém cói
 
-  - intent: ask_for_dinner
+  - intent: ask_for_tiktok_trending
     examples: |
-      - tối nay anh nên ăn gì nhỉ
-      - tối nay ăn gì bây giờ nhỉ
-      - chọn giúp t bữa tối phát
-      - ăn tối nào
-      - tiểu nhị, chọn món
-      - bữa tối
-      - ăn gì bây giờ
-      - chọn giúp anh một quán ăn
+      - cho anh xem trending trên tiktok đi 
+      - bây giờ tiktok đang có trend gì nhỉ
+      - lấy thông tin về trending trên tiktok giúp anh
+      - xem trending ở tiktok nào 
+      - có gì hot trên tiktok ta
+      - vài video trending của tiktok đi
+      - top trending tiktok bây giờ là gì nhỉ?

@@ -1,4 +1,0 @@
-pip install nltk
-pip install numpy
-pip install torch
-pip install selenium
