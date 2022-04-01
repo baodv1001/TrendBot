@@ -8,7 +8,7 @@ language: vi
 
 pipeline:
   - name: vietnamese_tokenizer.VietnameseTokenizer
-    tokenizer: pyvi
+    tokenizer: underthesea
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
@@ -16,9 +16,8 @@ pipeline:
     analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
-  # - name: fasttext_featurizer.FastTextFeaturizer
-  #   cache_dir: fasttext
-  #   file: cc.vi.300.bin
+  - name: fasttext_featurizer.FastTextFeaturizer
+    cache_path: fasttext/cc.vi.300.bin
   - name: DIETClassifier
     epochs: 100
     constrain_similarities: true

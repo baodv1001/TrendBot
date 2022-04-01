@@ -1,6 +1,8 @@
 import logging
 import pathlib
 from typing import Any, Dict, List, Text, Type
+import os
+import gzip
 
 import fasttext
 import numpy as np
@@ -58,7 +60,8 @@ class FastTextFeaturizer(DenseFeaturizer, GraphComponent):
         self.validate_config(config)
         self.alias = name if not config.get("alias") else config["alias"]
         # The configuration dictionary is saved in `self._config` for reference.
-        self.model = fasttext.load_model(config["cache_path"])
+        path = config["cache_path"]
+        self.model = fasttext.load_model(path)
 
     @classmethod
     def create(

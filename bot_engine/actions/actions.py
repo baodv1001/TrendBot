@@ -6,7 +6,7 @@ sys.path.insert(0, '../')
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
-from tiktokapi import get_tiktok_trending
+from tiktokapi import get_tiktok_trending, get_tiktok_trending_by_hashtag
 import random
 import json
 
@@ -40,15 +40,29 @@ class ActionTopTrending(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # food = []
-        # for i in range(2):
-        #     food_number = random.randrange(len(DATABASE))
-        #     food.append(DATABASE[food_number])
-
-        # dispatcher.utter_message(
-        #     text="Em nghĩ hôm nay anh chị có thể thử món '{}' hoặc bên cạnh đó cũng có thể là món '{}' ạ".format(food[0], food[1]))
-
         result = get_tiktok_trending()
+        for video in result:
+            dispatcher.utter_message(text=video['title'], image=video['cover'])
+            # dispatcher.utter_attachment(attachment={
+            #     "type": 'video',
+            #     "payload": {
+            #         "src": video['play']
+            #     }
+            # })
+
+        return []
+
+class ActionTrendingByHashTag(Action):
+
+    def name(self) -> Text:
+        return "action_trending_by_hashtag"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        hashtag = tracker.get_slot("hashtag")
+        result = get_tiktok_trending_by_hashtag(hashtag)
         for video in result:
             dispatcher.utter_message(text=video['title'], image=video['cover'])
             # dispatcher.utter_attachment(attachment={

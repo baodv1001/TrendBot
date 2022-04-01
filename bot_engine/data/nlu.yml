@@ -75,3 +75,23 @@ nlu:
       - có gì hot trên tiktok ta
       - vài video trending của tiktok đi
       - top trending tiktok bây giờ là gì nhỉ?
+
+  - intent: ask_for_tiktok_trending_by_hashtag
+    examples: |
+      - cho anh xem trending theo hashtag trên tiktok đi 
+      - tìm các video trending theo hashtag giúp anh
+      - lấy thông tin về trending trên tiktok giúp anh theo từ khóa
+      - xem trending ở tiktok theo từ khóa nào
+      - trending theo hashtag nào
+      - anh muốn tìm kiếm trending theo từ khóa
+      - sử dụng từ khóa để tìm kiếm video trending nào
+      - sử dụng hashtag để tìm kiếm video trending nào
+
+  - intent: confirm
+    examples: |
+      - [cosplay](hashtag)
+      - Hashtag là [cosplay](hashtag)
+      - Từ khóa là [cosplay](hashtag)
+      - hashtag anh muốn tìm là [cosplay](hashtag)
+      - Từ khóa cần tìm kiếm là [cosplay](hashtag)
+      - Anh muốn tìm về [cosplay](hashtag)

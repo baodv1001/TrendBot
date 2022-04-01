@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+api_host = os.environ.get("api-host")
+api_key = os.environ.get("api-key")
 
 def get_tiktok_trending():
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/feed/list"
-	api_host = os.environ.get("api-host")
-	api_key = os.environ.get("api-key")
 	querystring = {"region":"VN","count":"10"}
 
 	headers = {
@@ -20,6 +20,46 @@ def get_tiktok_trending():
 	response = requests.request("GET", url, headers=headers, params=querystring)
 	res = json.loads(response.text)
 	data = res['data']
+	return convert_data(data)
+	print(json.dumps(result, ensure_ascii=False))
+
+def get_tiktok_trending_by_hashtag(hashtag):
+	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
+
+	querystring = {"keywords": hashtag}
+
+	headers = {
+		"X-RapidAPI-Host": api_host,
+		"X-RapidAPI-Key": api_key
+	}
+
+	response = requests.request("GET", url, headers=headers, params=querystring)
+
+	res = json.loads(response.text)
+	data = res['data']['challenge_list']
+	challenge = data[0]
+	res_data = get_hashtag_video_by_id(challenge['id'])
+	videos = res_data['videos']
+	print(convert_data(videos))
+	return convert_data(videos)
+
+def get_hashtag_video_by_id(id):
+
+	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/posts"
+
+	querystring = {"challenge_id":id}
+
+	headers = {
+		"X-RapidAPI-Host": api_host,
+		"X-RapidAPI-Key": api_key
+	}
+ 
+	response = requests.request("GET", url, headers=headers, params=querystring)
+	res = json.loads(response.text)
+	data = res['data']
+	return data;
+
+def convert_data(data):
 	result = []
 
 	for video in data:
@@ -39,7 +79,5 @@ def get_tiktok_trending():
 			}
 		)
 	return result
-	print(json.dumps(result, ensure_ascii=False))
 
-
-get_tiktok_trending()
+get_tiktok_trending_by_hashtag("cosplay")
