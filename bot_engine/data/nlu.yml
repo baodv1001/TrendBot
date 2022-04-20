@@ -95,3 +95,12 @@ nlu:
       - hashtag anh muốn tìm là [cosplay](hashtag)
       - Từ khóa cần tìm kiếm là [cosplay](hashtag)
       - Anh muốn tìm về [cosplay](hashtag)
+
+  - intent: ask_for_tiktok_trending
+    examples: |
+      - có gì hot trên youtube
+      - top trending youtube
+      - video nổi tiếng
+      - video nhiều người xem
+      - yêu thích video 
+      - top view video youtube là gì
