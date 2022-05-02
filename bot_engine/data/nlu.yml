@@ -89,7 +89,7 @@ nlu:
 
   - intent: confirm
     examples: |
-      - [cosplay](hashtag)
+      - [cosplay](hashtag) nha
       - Hashtag là [cosplay](hashtag)
       - Từ khóa là [cosplay](hashtag)
       - hashtag anh muốn tìm là [cosplay](hashtag)

@@ -5,15 +5,16 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-api_host = os.environ.get("api-host")
+api_host_1 = os.environ.get("api-host-1")
 api_key = os.environ.get("api-key")
+api_host_2 = os.environ.get("api-host-2")
 
 def get_tiktok_trending():
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/feed/list"
 	querystring = {"region":"VN","count":"10"}
 
 	headers = {
-		"X-RapidAPI-Host": api_host,
+		"X-RapidAPI-Host": api_host_1,
 		"X-RapidAPI-Key": api_key
 	}
 
@@ -21,15 +22,14 @@ def get_tiktok_trending():
 	res = json.loads(response.text)
 	data = res['data']
 	return convert_data(data)
-	print(json.dumps(result, ensure_ascii=False))
 
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
-
+	print(hashtag)
 	querystring = {"keywords": hashtag}
 
 	headers = {
-		"X-RapidAPI-Host": api_host,
+		"X-RapidAPI-Host": api_host_1,
 		"X-RapidAPI-Key": api_key
 	}
 
@@ -50,7 +50,7 @@ def get_hashtag_video_by_id(id):
 	querystring = {"challenge_id":id}
 
 	headers = {
-		"X-RapidAPI-Host": api_host,
+		"X-RapidAPI-Host": api_host_1,
 		"X-RapidAPI-Key": api_key
 	}
  
@@ -80,4 +80,157 @@ def convert_data(data):
 		)
 	return result
 
-get_tiktok_trending_by_hashtag("cosplay")
+def get_trending():
+	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
+
+	querystring = {"count":"10","region":"VN"}
+
+	headers = {
+		"X-RapidAPI-Host": api_host_2,
+		"X-RapidAPI-Key": api_key
+	}
+
+	response = requests.request("GET", url, headers=headers, params=querystring)
+
+	res = json.loads(response.text)
+
+	categories = res['category_list']
+
+	res = convert_category(categories)
+
+	# for category in res:
+	# 	get_video_by_category(category)
+	print(res)
+	return res;
+	
+
+def convert_category(categories):
+	result = []
+
+	for category in categories:
+		# hashtag
+		if(category['category_type'] == 0):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['challenge_info']['cha_name'],
+					'id': category['challenge_info']['cid'],
+					'user_count': category['challenge_info']['user_count'],
+					'view_count': category['challenge_info']['view_count'],
+					'author': '',
+					'url': 'https://www.tiktok.com/tag/{0}'.format(category['challenge_info']['cha_name'])
+				}
+			)
+		# effect
+		if(category['category_type'] == 3):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['effect_info']['name'],
+					'id': category['effect_info']['effect_id'],
+					'user_count': category['effect_info']['user_count'],
+					'view_count': category['effect_info']['vv_count'],
+					'author': category['effect_info']['owner_nickname'],
+					'url': 'https://www.tiktok.com/sticker/{0}-{1}'.format(category['effect_info']['name'].replace(' ','-'),category['effect_info']['effect_id'] )
+				}
+			)
+		# music
+		if(category['category_type'] == 1):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['music_info']['title'],
+					'id': category['music_info']['mid'],
+					'user_count': category['music_info']['user_count'],
+					'view_count': 0,
+					'author': category['music_info']['author'],
+					'url': 'https://www.tiktok.com/music/{0}-{1}'.format(category['music_info']['title'].replace(' ','-'), category['music_info']['mid'])
+				}
+			)
+
+	return result
+
+def get_video_by_category(category):
+	if category['type']==0:
+		print('{0}: {1}'.format(category['desc'], category['name']))
+		return get_video_by_challenge(category['id'])
+	elif category['type']==1:
+		print('{0}: {1}'.format(category['desc'], category['name']))
+		return get_video_by_music(category['id'])
+	elif category['type']==3:
+		print('{0}: {1}'.format(category['desc'], category['name']))
+		return get_video_by_effect(category['id'])
+	
+
+def get_video_by_music(id):
+	url = 'https://tokapi-mobile-version.p.rapidapi.com/v1/music/posts/{0}'.format(id)
+
+	querystring = {"count":"5"}
+
+	headers = {
+		"X-RapidAPI-Host": api_host_2,
+		"X-RapidAPI-Key": api_key
+	}
+
+	response = requests.request("GET", url, headers=headers, params=querystring)
+	res = json.loads(response.text)
+	videos = convert_video_from_aweme(res['aweme_list'])
+	return videos
+
+def get_video_by_challenge(id):
+	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/hashtag/posts/{0}".format(id)
+
+	querystring = {"count":"5"}
+
+	headers = {
+		"X-RapidAPI-Host": api_host_2,
+		"X-RapidAPI-Key": api_key
+	}
+
+	response = requests.request("GET", url, headers=headers, params=querystring)
+
+	res = json.loads(response.text)
+	videos = convert_video_from_aweme(res['aweme_list'])
+	return videos
+
+def get_video_by_effect(id):
+	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/sticker/posts/{0}".format(id)
+
+	querystring = {"count":"5"}
+
+	headers = {
+		"X-RapidAPI-Host": api_host_2,
+		"X-RapidAPI-Key": api_key
+	}
+
+	response = requests.request("GET", url, headers=headers, params=querystring)
+
+	res = json.loads(response.text)
+	videos = convert_video_from_aweme(res['aweme_list'])
+	return videos
+
+def convert_video_from_aweme(awemes):
+	result = []
+
+	for aweme in awemes:
+		result.append({
+			'title': aweme['desc'],
+			'cover': aweme['video']['cover']['url_list'][0],
+			'url': aweme['share_url'],
+			'likes': aweme['statistics']['digg_count'],
+			'views': aweme['statistics']['play_count'],
+			'comments': aweme['statistics']['comment_count'],
+			'shares': aweme['statistics']['share_count'],
+			'downloads': aweme['statistics']['download_count'],
+			'author': aweme['author']['nickname'],
+			'author_id': aweme['author']['unique_id'],
+			'author_avatar': aweme['author']['avatar_larger']['url_list'][0]
+		})
+
+	return result
+
+
+get_trending()
