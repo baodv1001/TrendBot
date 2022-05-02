@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 *cache/
-bot_engine/fasttext/cc.vi.300.bin
+
+*.bin

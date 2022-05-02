@@ -4,10 +4,12 @@ intents:
   - greet
   - goodbye
   - thankyou
+  - confirm
   - praise
   - decry
   - ask_for_tiktok_trending
   - ask_ability
+  - ask_for_tiktok_trending_by_hashtag
 
 responses:
   utter_default:
@@ -25,6 +27,8 @@ responses:
     - text: Hì hì, anh chị khen quá lơì rồi ạ
   utter_sorry:
     - text: Em xin lôĩ vì em chưa đủ thông minh ạ =(((
+  utter_confirm:
+    - text: Hashtag anh(chị) muốn tìm kiếm là gì
   utter_noworries:
     - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^
   utter_show_ability:
@@ -46,6 +50,19 @@ actions:
   - utter_show_ability
   - utter_fallback
   - utter_iamabot
+  - utter_confirm
+  - action_trending_by_hashtag
+
+entities:
+  - hashtag
+
+slots:
+  hashtag:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: hashtag
 
 session_config:
   session_expiration_time: 60
