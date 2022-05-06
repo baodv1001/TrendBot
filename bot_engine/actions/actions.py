@@ -41,7 +41,8 @@ class ActionTrendingByHashTag(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        hashtag = tracker.get_slot("hashtag")
+        hashtag = next(tracker.get_latest_entity_values("hashtag"),None)
+        print("Hashtag is", hashtag)
         result = get_tiktok_trending_by_hashtag(hashtag)
         for video in result:
             dispatcher.utter_message(text=video['title'], image=video['cover'])
