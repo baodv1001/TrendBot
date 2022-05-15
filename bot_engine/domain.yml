@@ -16,27 +16,36 @@ responses:
     - text:
         Em xin lỗi, em chưa hiểu ý muốn của anh(chị) ạ. Anh chị có thể nói lại được
         không ạ
+
   utter_greet:
     - text:
         "Em chào anh(chị) ạ. \nEm là chatbot được thiết kế để giúp anh chị theo dõi\
         \ xu hướng trên mạng xã hội ạ"
+
   utter_goodbye:
     - text: Hẹn gặp lại anh chị ạ ^^
       image: https://i.imgur.com/nGF1K8f.jpg
+
   utter_happy:
-    - text: Hì hì, anh chị khen quá lơì rồi ạ
+    - text: Hì hì, anh chị khen quá lời rồi ạ
+
   utter_sorry:
     - text: Em xin lôĩ vì em chưa đủ thông minh ạ =(((
+
   utter_confirm:
     - text: Hashtag anh(chị) muốn tìm kiếm là gì
+
   utter_noworries:
     - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^
+
   utter_show_ability:
     - text: Em có thể trò chuyện với anh(chị), có thể giúp anh(chị) theo dõi xu hướng trên mạng xã hội ạ
+
   utter_fallback:
     - text:
         Em xin lỗi, em chưa hiểu ý muốn của anh(chị) ạ. Anh chị có thể nói lại được
         không ạ
+
   utter_iamabot:
     - text: Tôi là TrendBot
 
@@ -46,15 +55,17 @@ actions:
   - utter_goodbye
   - utter_sorry
   - utter_noworries
-  - action_top_trending
   - utter_show_ability
   - utter_fallback
   - utter_iamabot
   - utter_confirm
+
+  - action_top_trending
   - action_trending_by_hashtag
 
 entities:
   - hashtag
+  - platform
 
 slots:
   hashtag:
@@ -63,6 +74,13 @@ slots:
     mappings:
       - type: from_entity
         entity: hashtag
+
+  platform:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: platform
 
 session_config:
   session_expiration_time: 60

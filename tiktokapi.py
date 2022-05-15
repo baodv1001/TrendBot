@@ -10,18 +10,26 @@ api_key = os.environ.get("api-key")
 api_host_2 = os.environ.get("api-host-2")
 
 def get_tiktok_trending():
-	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/feed/list"
-	querystring = {"region":"VN","count":"10"}
+	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
+
+	querystring = {"count":"10","region":"VN"}
 
 	headers = {
-		"X-RapidAPI-Host": api_host_1,
+		"X-RapidAPI-Host": api_host_2,
 		"X-RapidAPI-Key": api_key
 	}
 
 	response = requests.request("GET", url, headers=headers, params=querystring)
+
 	res = json.loads(response.text)
-	data = res['data']
-	return convert_data(data)
+
+	categories = res['category_list']
+
+	res = convert_category(categories)
+
+	# for category in res:
+	# 	get_video_by_category(category)
+	return res
 
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
@@ -78,29 +86,6 @@ def convert_data(data):
 			}
 		)
 	return result
-
-def get_trending():
-	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
-
-	querystring = {"count":"10","region":"VN"}
-
-	headers = {
-		"X-RapidAPI-Host": api_host_2,
-		"X-RapidAPI-Key": api_key
-	}
-
-	response = requests.request("GET", url, headers=headers, params=querystring)
-
-	res = json.loads(response.text)
-
-	categories = res['category_list']
-
-	res = convert_category(categories)
-
-	# for category in res:
-	# 	get_video_by_category(category)
-	return res;
-	
 
 def convert_category(categories):
 	result = []
@@ -231,4 +216,4 @@ def convert_video_from_aweme(awemes):
 	return result
 
 
-get_trending()
+get_tiktok_trending()
