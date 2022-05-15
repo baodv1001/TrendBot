@@ -4,7 +4,7 @@ intents:
   - greet
   - goodbye
   - thankyou
-  - confirm
+  - confirm_hashtag
   - praise
   - decry
   - ask_for_tiktok_trending

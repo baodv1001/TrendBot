@@ -9,6 +9,18 @@ nlu:
       - em ơi, cho anh hỏi
       - bot ơi
       - cho mình hỏi chút
+      - hello bot
+      - hi
+      - xin chào
+      - bot ơi cho mình hỏi
+      - chào bot nha
+      - bot ơi bot
+      - bot ơi cho mình hỏi chút được không
+      - cho mình hỏi chút với
+      - cho mình hỏi chút được không
+      - xin chào bot
+      - hi bot
+      - xin chào nha
 
   - intent: goodbye
     examples: |
@@ -20,6 +32,16 @@ nlu:
       - hẹn gặp sau 
       - bye
       - bye bye
+      - tạm biệt bot nha
+      - mình sẽ quay lại sau
+      - bai bai
+      - goodbye
+      - ngủ ngon nhá
+      - tạm biệt bot
+      - gặp sau nha
+      - bye bot
+      - bai bot
+      - hẹn gặp vào ngày mai nhá
 
   - intent: ask_ability
     examples: |
@@ -30,6 +52,17 @@ nlu:
       - em biết làm gì?
       - em hỗ trợ anh như thế nào?
       - cho anh xem các chức năng của em
+      - bot có thể làm gì thế?
+      - cho mình biết bot có thể làm gì được không?
+      - không biết bot làm được gì nhỉ?
+      - chức năng của bot là gì thế ta?
+      - bot này dùng để làm gì nhỉ?
+      - bot này biết làm gì ta?
+      - có thể cho mình biết chức năng của bot được không?
+      - cho mình xem chức năng của bot đi
+      - khả năng của bot là gì?
+      - bot hỗ trợ gì thế?
+      - bot có thể giúp gì cho mình?
 
   - intent: thankyou
     examples: |
@@ -43,6 +76,13 @@ nlu:
       - cảm ơn
       - thank you so much
       - great! Thanks
+      - cảm ơn bot nhiều nhá
+      - cảm ơn rất nhiều
+      - cảm ơn vì sự hỗ trợ của bot
+      - cảm ơn vì sự hữu ích
+      - thank bot nhiều nha
+      - thanh kìu
+      - cảm ơn nhiều nha
 
   - intent: praise
     examples: |
@@ -55,6 +95,22 @@ nlu:
       - bot thông minh
       - đẹp trai đấy
       - Ênm đệnp léăm
+      - tuyệt quá
+      - sao bot giỏi vậy
+      - bot thông mình quá ta
+      - bot giỏi lắm đó
+      - hay ghê 
+      - hay ghê á bot
+      - bot tuyệt lắm
+      - bot thật tuyệt
+      - làm tốt lắm
+      - excellent
+      - hay thế ta
+      - cần phát huy nha bot
+      - wow giỏi ghê
+      - wow bot giỏi quá
+      - thật tuyệt
+      - sao bao thông minh thế
 
   - intent: decry
     examples: |
@@ -64,7 +120,29 @@ nlu:
       - ngu thật
       - dở ghê
       - có thế mà cũng không biết
-      - kém cói
+      - kém cỏi
+      - bot còn hơi kém nha
+      - bot cần cải thiện thêm đó
+      - vẫn còn thiếu tính năng kìa
+      - hơi tệ đó bot
+      - hãy nâng cấp thêm đi 
+      - hãy cải thiện thêm đi
+      - tệ quá
+      - cần luyện tập thêm đi bot
+      - hãy luyện tập để thông minh hơn
+      - bot còn non quá
+      - đơn giản vậy mà cũng sai
+      - đơn giản thế mà cũng không biết
+      - về học thêm đi 
+      - còn non và xanh lắm 
+      - bot gà thế
+      - bot sai quá sai
+      - tệ
+      - đánh giá còn hơi kém nha bot
+      - bot này cần cải thiện nhiều hơn
+      - tính năng còn tệ quá
+      - tính năng còn kém quá
+      - tính năng còn hơi ít nha
 
   - intent: ask_for_tiktok_trending
     examples: |
@@ -75,22 +153,44 @@ nlu:
       - có gì hot trên tiktok ta
       - vài video trending của tiktok đi
       - top trending tiktok bây giờ là gì nhỉ?
+      - cho mình thông tin về trend trên tiktok đi 
+      - hôm nay trend tiktok có gì nhỉ?
+      - hôm nay có gì mới lạ trên tiktok không ta?
+      - hình như có trend gì đó mới trên tiktok à?
+      - cho mình biết được trend trên tiktok đi?
+      - mình muốn cập nhật thông tin về trend ở tiktok 
+      - gửi chị xem thông tin về trend của tiktok đi
+      - trending bây giờ là gì nhỉ, ở tiktok ấy
+      - ngày hôm nay có trend gì mới trên tiktok không thế?
+      - khám phá trending trên tiktok đi
+      - hình như đang có trend gì đó trên tiktok
+      - top trend ở tiktok là gì?
+      - tiktok hôm nay có gì hay ho không 
+      - lâu quá chưa cập nhật thông tin về trending trên tiktok
+      - nhờ bot giúp mình xem top trend trên tiktok đi 
+      - bot có thể cho mình xem thông tin về các trend mới trên tiktok được không
 
   - intent: ask_for_tiktok_trending_by_hashtag
     examples: |
       - cho anh xem trending theo hashtag trên tiktok đi 
-      - tìm các video trending theo hashtag giúp anh
+      - tìm các video trending theo hashtag trên tiktok giúp anh
       - lấy thông tin về trending trên tiktok giúp anh theo từ khóa
       - xem trending ở tiktok theo từ khóa nào
-      - trending theo hashtag nào
+      - trending theo hashtag ở tiktok nào
       - anh muốn tìm kiếm trending theo từ khóa
-      - sử dụng từ khóa để tìm kiếm video trending nào
-      - sử dụng hashtag để tìm kiếm video trending nào
+      - sử dụng từ khóa để tìm kiếm video trending tiktok nào
+      - sử dụng hashtag để tìm kiếm video trending tiktok nào
+      - mình muốn tìm kiếm trend ở tiktok theo từ khóa
+      - từ khóa này có phải là trend trên tiktok không?
+      - các video mới nhất của trend hashtag này là gì?
+      - mình có từ khóa này muốn tìm kiếm trên tiktok
+      - từ khóa này có thông tin gì trên tiktok ta?
+      - có thể cho mình tìm trend theo từ khóa ở tiktok được không?
 
-  - intent: confirm
+  - intent: confirm_hashtag
     examples: |
-      - [cosplay](hashtag)
-      - Hashtag là [cosplay](hashtag)
+      - [cosplay](hashtag) nha
+      - Hashtag là [cosplay abc](hashtag)
       - Từ khóa là [cosplay](hashtag)
       - hashtag anh muốn tìm là [cosplay](hashtag)
       - Từ khóa cần tìm kiếm là [cosplay](hashtag)
@@ -104,3 +204,17 @@ nlu:
       - video nhiều người xem
       - yêu thích video 
       - top view video youtube là gì
+      - Anh muốn tìm về từ khóa [cosplay](hashtag)
+      - Từ khóa mình cần tìm là [sontung](hashtag)
+      - Có thể tìm giúp mình từ khóa [sontung](hashtag)
+      - Hashtag cần tìm là [bienhinh](hashtag)
+      - Mình muốn tìm kiếm thông tin về từ khóa [anime](hashtag)
+      - Từ khóa [anime](hashtag) là từ khóa mình muốn tìm kiếm
+      - Hãy giúp mình tìm hashtag [leageoflegend](hashtag)
+      - Hashtag mình cần tìm là [tocdep](hashtag)
+      - Hashtag là [gaixinh](hashtag) nha bot
+      - Bot có thể giúp mình tìm trend theo hashtag [foryourpage](hashtag)
+      - Còn về hashtag [sontungmtp](hashtag) thì sao bot
+      - Thông tin chi tiết mới về từ khóa [there's no one at all] đi
+      - Từ khóa [vtv24] có vẻ hot đấy
+      - Từ khóa [sontung] có vẻ đang hot đấy

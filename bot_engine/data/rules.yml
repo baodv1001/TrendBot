@@ -1,6 +1,11 @@
 version: "3.1"
 
 rules:
+  - rule: Say hi anytime the user says hi
+    steps:
+      - intent: greet
+      - action: utter_greet
+
   - rule: Say goodbye anytime the user says goodbye
     steps:
       - intent: goodbye
@@ -36,14 +41,12 @@ rules:
       - intent: nlu_fallback
       - action: utter_fallback
 
-  - rule: Set hashtag from user
+  - rule: Reply trending hashtag tiktok
     steps:
-      - intent: confirm
-      - slot_was_set:
-          - hashtag: hashtag
+      - intent: confirm_hashtag
       - action: action_trending_by_hashtag
 
-  - rule: ask about hashtag
+  - rule: Reply trending tiktok
     steps:
-      - intent: ask_for_tiktok_trending_by_hashtag
-      - action: utter_confirm
+      - intent: ask_for_tiktok_trending
+      - action: action_top_trending
