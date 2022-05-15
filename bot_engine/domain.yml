@@ -10,6 +10,7 @@ intents:
   - ask_for_tiktok_trending
   - ask_ability
   - ask_for_tiktok_trending_by_hashtag
+  - confirm_hashtag
 
 responses:
   utter_default:
@@ -62,6 +63,7 @@ actions:
 
   - action_top_trending
   - action_trending_by_hashtag
+  - action_select_platform
 
 entities:
   - hashtag

@@ -5,6 +5,10 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
+
+      - intent: select_platform
+      - action: action_select_platform
+
       - intent: ask_for_tiktok_trending
       - action: action_top_trending
 
@@ -12,8 +16,13 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
+
+      - intent: select_platform
+      - action: action_select_platform
+
       - intent: ask_for_tiktok_trending_by_hashtag
       - action: utter_confirm
+
       - intent: confirm_hashtag
         entities:
           - hashtag: singsong

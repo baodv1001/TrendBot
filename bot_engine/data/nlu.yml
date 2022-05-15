@@ -208,3 +208,8 @@ nlu:
       - Thông tin chi tiết mới về từ khóa [there's no one at all] đi
       - Từ khóa [vtv24] có vẻ hot đấy
       - Từ khóa [sontung] có vẻ đang hot đấy
+
+  - intent: select_platform
+    examples: |
+      - Tìm kiếm trên [youtube](platform)
+      - Tìm kiếm trên [tiktok](platform)

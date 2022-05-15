@@ -29,10 +29,12 @@ def get_tiktok_trending():
 
 	# for category in res:
 	# 	get_video_by_category(category)
+ 
 	return res
 
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
+ 
 	querystring = {"keywords": hashtag}
 
 	headers = {
@@ -43,11 +45,15 @@ def get_tiktok_trending_by_hashtag(hashtag):
 	response = requests.request("GET", url, headers=headers, params=querystring)
 
 	res = json.loads(response.text)
+ 
 	data = res['data']['challenge_list']
+ 
 	challenge = data[0]
+ 
 	res_data = get_hashtag_video_by_id(challenge['id'])
+ 
 	videos = res_data['videos']
-	print(convert_data(videos))
+	
 	return convert_data(videos)
 
 def get_hashtag_video_by_id(id):
@@ -62,8 +68,11 @@ def get_hashtag_video_by_id(id):
 	}
  
 	response = requests.request("GET", url, headers=headers, params=querystring)
+ 
 	res = json.loads(response.text)
+ 
 	data = res['data']
+ 
 	return data;
 
 def convert_data(data):

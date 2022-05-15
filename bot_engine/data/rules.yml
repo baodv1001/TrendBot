@@ -50,3 +50,8 @@ rules:
     steps:
       - intent: ask_for_tiktok_trending
       - action: action_top_trending
+
+  - rule: Reply select platform
+    steps:
+      - intent: ask_for_tiktok_trending
+      - action: action_select_platform
