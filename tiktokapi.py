@@ -25,7 +25,6 @@ def get_tiktok_trending():
 
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
-	print(hashtag)
 	querystring = {"keywords": hashtag}
 
 	headers = {
@@ -100,7 +99,6 @@ def get_trending():
 
 	# for category in res:
 	# 	get_video_by_category(category)
-	print(res)
 	return res;
 	
 
