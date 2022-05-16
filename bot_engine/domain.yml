@@ -4,13 +4,14 @@ intents:
   - greet
   - goodbye
   - thankyou
-  - confirm_hashtag
+  - confirm
   - praise
   - decry
   - ask_for_tiktok_trending
   - ask_ability
   - ask_for_tiktok_trending_by_hashtag
   - confirm_hashtag
+  - select_platform
 
 responses:
   utter_default:

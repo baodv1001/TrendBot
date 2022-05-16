@@ -53,5 +53,5 @@ rules:
 
   - rule: Reply select platform
     steps:
-      - intent: ask_for_tiktok_trending
+      - intent: select_platform
       - action: action_select_platform
