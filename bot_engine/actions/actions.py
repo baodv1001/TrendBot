@@ -5,10 +5,11 @@ import json
 sys.path.insert(0, '../')
 
 from typing import Any, Text, Dict, List
-#from trending_api import get_trending, get_trending_by_hashtag  
-from rasa_sdk import Action, Tracker
+from trending_api import get_trending_by_hashtag  
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
-from tiktokapi import get_tiktok_trending, get_tiktok_trending_by_hashtag
+from tiktok_api import get_tiktok_trending, get_tiktok_trending_by_hashtag
+from rasa_sdk.types import DomainDict
 
 class ActionTopTrending(Action):
 
@@ -45,8 +46,7 @@ class ActionTrendingByHashTag(Action):
         print("Hashtag is", hashtag)
         print("Platform is", platform)
         
-        #result = get_trending_by_hashtag(platform, hashtag)
-        result = get_tiktok_trending_by_hashtag(hashtag)
+        result = get_trending_by_hashtag(platform, hashtag)
         
         for video in result:
             dispatcher.utter_message(text=video['title'], image=video['cover'])
@@ -66,7 +66,20 @@ class ActionSelectPlatform(Action):
         platform = next(tracker.get_latest_entity_values("platform"),None)
         
         print("Platform is", platform)
-
         dispatcher.utter_message(text='{0}'.format(platform))
 
         return []
+    
+class ValidatePlatformSelected(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_platform_select"
+    def validate_platform(self, slot_value: Any, 
+                          dispatcher: CollectingDispatcher, 
+                          tracker: Tracker, 
+                          domain: DomainDict):
+        
+        if(slot_value == "tiktok" or slot_value == "youtube"):
+            dispatcher.utter_message(text='Platform is: {0} '.format(slot_value))
+            return {"platform" : slot_value}
+                                  
+        return {"platform": None}

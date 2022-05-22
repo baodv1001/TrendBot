@@ -1,5 +1,9 @@
 version: "3.1"
 
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
 intents:
   - greet
   - goodbye
@@ -66,9 +70,17 @@ actions:
   - action_trending_by_hashtag
   - action_select_platform
 
+  - validate_platform_select
+
 entities:
   - hashtag
   - platform
+  - username
+
+forms:
+  platform_form:
+    required_slots:
+      - platform
 
 slots:
   hashtag:
@@ -84,7 +96,13 @@ slots:
     mappings:
       - type: from_entity
         entity: platform
+        conditions:
+          - active_loop: platform_form
+            requested_slot: platform
 
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  username:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: username

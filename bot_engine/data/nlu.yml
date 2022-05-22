@@ -189,25 +189,25 @@ nlu:
 
   - intent: confirm_hashtag
     examples: |
-      - [cosplay](hashtag) nha
-      - Hashtag là [cosplay abc](hashtag)
-      - Từ khóa là [cosplay](hashtag)
-      - hashtag anh muốn tìm là [cosplay](hashtag)
-      - Từ khóa cần tìm kiếm là [cosplay](hashtag)
-      - Anh muốn tìm về từ khóa [cosplay](hashtag)
-      - Từ khóa mình cần tìm là [sontung](hashtag)
-      - Có thể tìm giúp mình từ khóa [sontung](hashtag)
-      - Hashtag cần tìm là [bienhinh](hashtag)
-      - Mình muốn tìm kiếm thông tin về từ khóa [anime](hashtag)
-      - Từ khóa [anime](hashtag) là từ khóa mình muốn tìm kiếm
-      - Hãy giúp mình tìm hashtag [leageoflegend](hashtag)
-      - Hashtag mình cần tìm là [tocdep](hashtag)
-      - Hashtag là [gaixinh](hashtag) nha bot
-      - Bot có thể giúp mình tìm trend theo hashtag [foryourpage](hashtag)
-      - Còn về hashtag [sontungmtp](hashtag) thì sao bot
-      - Thông tin chi tiết mới về từ khóa [there's no one at all] đi
-      - Từ khóa [vtv24] có vẻ hot đấy
-      - Từ khóa [sontung] có vẻ đang hot đấy
+      - [cosplay](hashtag) trên [tiktok](platform) nha
+      - Hashtag là [cosplay](hashtag) trên [tiktok](platform)
+      - Từ khóa là [cosplay](hashtag) trên [tiktok](platform)
+      - hashtag anh muốn tìm là [cosplay](hashtag) trên [tiktok](platform)
+      - Từ khóa cần tìm kiếm là [cosplay](hashtag) trên [tiktok](platform)
+      - Anh muốn tìm về từ khóa [cosplay](hashtag) trên [tiktok](platform)
+      - Từ khóa mình cần tìm là [sontung](hashtag) trên [tiktok](platform)
+      - Có thể tìm giúp mình từ khóa [sontung](hashtag) trên [tiktok](platform)
+      - Hashtag cần tìm là [bienhinh](hashtag) trên [tiktok](platform)
+      - Mình muốn tìm kiếm thông tin về từ khóa [anime](hashtag) trên [tiktok](platform)
+      - Từ khóa [anime](hashtag) là từ khóa mình muốn tìm kiếm trên [tiktok](platform)
+      - Hãy giúp mình tìm hashtag [leageoflegend](hashtag) trên [tiktok](platform)
+      - Hashtag mình cần tìm là [tocdep](hashtag) trên [tiktok](platform)
+      - Hashtag là [gaixinh](hashtag) nha bot trên [tiktok](platform)
+      - Bot có thể giúp mình tìm trend theo hashtag [foryourpage](hashtag) trên [tiktok](platform)
+      - Còn về hashtag [sontungmtp](hashtag) thì sao bot trên [tiktok](platform)
+      - Thông tin chi tiết mới về từ khóa [blackpink] đi trên [tiktok](platform)
+      - Từ khóa [vtv24] có vẻ hot trên [tiktok](platform)
+      - Từ khóa [sontung] có vẻ đang hot trên [tiktok](platform)
 
   - intent: select_platform
     examples: |
