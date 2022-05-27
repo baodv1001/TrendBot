@@ -205,11 +205,106 @@ nlu:
       - Hashtag là [gaixinh](hashtag) nha bot trên [tiktok](platform)
       - Bot có thể giúp mình tìm trend theo hashtag [foryourpage](hashtag) trên [tiktok](platform)
       - Còn về hashtag [sontungmtp](hashtag) thì sao bot trên [tiktok](platform)
-      - Thông tin chi tiết mới về từ khóa [blackpink] đi trên [tiktok](platform)
-      - Từ khóa [vtv24] có vẻ hot trên [tiktok](platform)
-      - Từ khóa [sontung] có vẻ đang hot trên [tiktok](platform)
+      - Thông tin chi tiết mới về từ khóa [blackpink](hashtag) đi trên [tiktok](platform)
+      - Từ khóa [vtv24](hashtag) có vẻ hot trên [tiktok](platform)
+      - Từ khóa [sontung](hashtag) có vẻ đang hot trên [tiktok](platform)
 
   - intent: select_platform
     examples: |
       - Tìm kiếm trên [youtube](platform)
       - Tìm kiếm trên [tiktok](platform)
+      - Tìm kiếm trên [twitter](platform)
+
+  - lookup: hashtag
+    examples: |
+      - sontung
+      - cosplay
+      - mtp
+      - vtv24
+      - seagames
+      - covid
+      - worldcup
+      - gaixinh 
+      - traidep
+      - fyp
+      - foryoupage
+      - singsong
+      - funny
+      - duet
+      - trending
+      - love
+      - memes
+      - cute
+      - comedy
+      - featureme
+      - repost
+      - music
+      - new
+      - workout
+      - artist
+      - happy
+      - gaming
+      - freefire
+      - leageoflegends
+      - lol
+      - pubg
+      - mobile
+      - lienquan
+      - anime
+      - bts
+      - quanghungmasterd
+      - cat
+      - dog
+      - beautiful
+      - cooking
+      - photography
+      - dancer
+      - slowmo
+      - gym
+      - singing
+      - lifehack
+      - repect
+      - football
+      - nature
+      - amazing
+      - wibu
+      - vacaiket 
+      - ngoctrinh
+      - hienho
+      - datvilla
+      - xuhuong
+      - tiktok
+      - khaicakhia
+      - phamvinh
+      - ciin
+      - lebong
+      - change.mie
+      - thaybeou40
+      - 3tl
+      - ancungtiktok
+      - bienhinh
+      - nau an
+      - ngoaihanganh
+      - manchester
+      - damcuoi
+      - mientay
+      - giaxang
+      - devuong
+      - skincare
+      - genz
+      - gaidep
+      - hotgirl
+      - lisa
+      - rose
+      - jisoo
+      - blackpink
+      - missuniver
+      - lazada
+      - shopee
+      - tiki
+      - it
+      - cong nghe thong tin
+      - laptrinh
+      - coding
+      - lifestyle
+      - heallth

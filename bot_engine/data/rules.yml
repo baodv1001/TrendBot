@@ -41,9 +41,20 @@ rules:
       - intent: nlu_fallback
       - action: utter_fallback
 
-  - rule: Reply trending hashtag tiktok
+  - rule: Confirm hashtag
     steps:
       - intent: confirm_hashtag
+      - action: hashtag_form
+      - active_loop: hashtag_form
+
+  - rule: Reply trending by hashtag
+    condition:
+      - active_loop: hashtag_form
+    steps:
+      - action: hashtag_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
       - action: action_trending_by_hashtag
 
   - rule: Reply trending tiktok
@@ -55,3 +66,8 @@ rules:
     steps:
       - intent: select_platform
       - action: action_select_platform
+
+  - rule: Find trending by hashtag
+    steps:
+      - intent: ask_for_tiktok_trending_by_hashtag
+      - action: utter_confirm

@@ -39,7 +39,7 @@ responses:
     - text: Em xin lôĩ vì em chưa đủ thông minh ạ =(((
 
   utter_confirm:
-    - text: Hashtag anh(chị) muốn tìm kiếm là gì
+    - text: Hashtag và nền tảng anh(chị) muốn tìm kiếm là gì
 
   utter_noworries:
     - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^
@@ -65,11 +65,9 @@ actions:
   - utter_fallback
   - utter_iamabot
   - utter_confirm
-
   - action_top_trending
   - action_trending_by_hashtag
   - action_select_platform
-
   - validate_platform_select
 
 entities:
@@ -81,6 +79,9 @@ forms:
   platform_form:
     required_slots:
       - platform
+  hashtag_form:
+    required_slots:
+      - hashtag
 
 slots:
   hashtag:
@@ -89,6 +90,8 @@ slots:
     mappings:
       - type: from_entity
         entity: hashtag
+        conditions:
+          - active_loop: hashtag_form
 
   platform:
     type: text

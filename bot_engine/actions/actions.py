@@ -10,6 +10,7 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from tiktok_api import get_tiktok_trending, get_tiktok_trending_by_hashtag
 from rasa_sdk.types import DomainDict
+from rasa_sdk.events import SlotSet
 
 class ActionTopTrending(Action):
 
@@ -42,9 +43,12 @@ class ActionTrendingByHashTag(Action):
 
         hashtag = next(tracker.get_latest_entity_values("hashtag"),None)
         platform = next(tracker.get_latest_entity_values("platform"),None)
-        
+        hashtag1 = tracker.get_slot("hashtag");
+
+
         print("Hashtag is", hashtag)
         print("Platform is", platform)
+        print("Hashtag is", hashtag1)
         
         result = get_trending_by_hashtag(platform, hashtag)
         

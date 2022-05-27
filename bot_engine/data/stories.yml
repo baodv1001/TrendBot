@@ -16,18 +16,18 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-
       - intent: select_platform
       - action: action_select_platform
-
       - intent: ask_for_tiktok_trending_by_hashtag
       - action: utter_confirm
-
       - intent: confirm_hashtag
-        entities:
-          - hashtag: singsong
-          - platform: youtube
+      - action: hashtag_form
+      - active_loop: hashtag_form
       - slot_was_set:
-          - hashtag: hashtag
-          - platform: youtube
+          - requested_slot: hashtag
+      - slot_was_set:
+          - hashtag: cosplay
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
       - action: action_trending_by_hashtag
