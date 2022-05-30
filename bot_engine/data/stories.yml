@@ -9,7 +9,7 @@ stories:
       - intent: select_platform
       - action: action_select_platform
 
-      - intent: ask_for_tiktok_trending
+      - intent: ask_for_trending
       - action: action_top_trending
 
   - story: ask trending by hashtag

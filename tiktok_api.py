@@ -12,7 +12,7 @@ api_host_2 = os.environ.get("api-host-2")
 def get_tiktok_trending():
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
 
-	querystring = {"count":"10","region":"VN"}
+	querystring = {"count":"3","region":"VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
@@ -35,7 +35,7 @@ def get_tiktok_trending():
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
  
-	querystring = {"keywords": hashtag}
+	querystring = {"keywords": hashtag, "count": "3", "region": "VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_1,

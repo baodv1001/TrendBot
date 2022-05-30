@@ -11,7 +11,7 @@ intents:
   - confirm
   - praise
   - decry
-  - ask_for_tiktok_trending
+  - ask_for_trending
   - ask_ability
   - ask_for_tiktok_trending_by_hashtag
   - confirm_hashtag
