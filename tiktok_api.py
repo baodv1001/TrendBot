@@ -114,6 +114,7 @@ def convert_category(categories):
 					'url': 'https://www.tiktok.com/tag/{0}'.format(category['challenge_info']['cha_name'])
 				}
 			)
+   
 		# effect
 		if(category['category_type'] == 3):
 			result.append(
@@ -128,6 +129,7 @@ def convert_category(categories):
 					'url': 'https://www.tiktok.com/sticker/{0}-{1}'.format(category['effect_info']['name'].replace(' ','-'),category['effect_info']['effect_id'] )
 				}
 			)
+   
 		# music
 		if(category['category_type'] == 1):
 			result.append(

@@ -22,6 +22,8 @@ class ActionTopTrending(Action):
         platform = next(tracker.get_latest_entity_values("platform"),None)
         print("Platform is", platform)
 
+        #dispatcher.utter_message('Chờ xíu nhé!')
+        
         results = get_trending(platform)
         
         if(platform == "tiktok"):
@@ -49,6 +51,8 @@ class ActionTrendingByHashTag(Action):
         print("Hashtag is", hashtag)
         print("Platform is", platform)
         
+        #dispatcher.utter_message('Chờ xíu nhé!')
+        
         result = get_trending_by_hashtag(platform, hashtag)
         
         for video in result:
@@ -72,17 +76,3 @@ class ActionSelectPlatform(Action):
         dispatcher.utter_message(text='{0}'.format(platform))
 
         return []
-    
-class ValidatePlatformSelected(FormValidationAction):
-    def name(self) -> Text:
-        return "validate_platform_select"
-    def validate_platform(self, slot_value: Any, 
-                          dispatcher: CollectingDispatcher, 
-                          tracker: Tracker, 
-                          domain: DomainDict):
-        
-        if(slot_value == "tiktok" or slot_value == "youtube"):
-            dispatcher.utter_message(text='Platform is: {0} '.format(slot_value))
-            return {"platform" : slot_value}
-                                  
-        return {"platform": None}

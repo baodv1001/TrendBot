@@ -10,6 +10,7 @@ stories:
       - action: action_select_platform
 
       - intent: ask_for_trending
+      - action: utter_wait_a_minute
       - action: action_top_trending
 
   - story: ask trending by hashtag
@@ -25,9 +26,8 @@ stories:
 
       - intent: confirm_hashtag
         entities:
-          - hashtag: singsong
-          - platform: youtube
+          - hashtag: seagame
       - slot_was_set:
           - hashtag: hashtag
-          - platform: youtube
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag

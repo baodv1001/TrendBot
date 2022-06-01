@@ -55,6 +55,9 @@ responses:
   utter_iamabot:
     - text: Tôi là TrendBot
 
+  utter_wait_a_minute:
+    - text: Đợi xíu nhé!
+
 actions:
   - utter_greet
   - utter_happy
@@ -65,22 +68,15 @@ actions:
   - utter_fallback
   - utter_iamabot
   - utter_confirm
+  - utter_wait_a_minute
 
   - action_top_trending
   - action_trending_by_hashtag
   - action_select_platform
 
-  - validate_platform_select
-
 entities:
   - hashtag
   - platform
-  - username
-
-forms:
-  platform_form:
-    required_slots:
-      - platform
 
 slots:
   hashtag:
@@ -96,13 +92,3 @@ slots:
     mappings:
       - type: from_entity
         entity: platform
-        conditions:
-          - active_loop: platform_form
-            requested_slot: platform
-
-  username:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_entity
-        entity: username

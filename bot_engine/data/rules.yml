@@ -39,11 +39,13 @@ rules:
   - rule: Reply trending hashtag tiktok
     steps:
       - intent: confirm_hashtag
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag
 
   - rule: Reply trending tiktok
     steps:
       - intent: ask_for_trending
+      - action: utter_wait_a_minute
       - action: action_top_trending
 
   - rule: Reply select platform

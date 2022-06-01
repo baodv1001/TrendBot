@@ -60,8 +60,6 @@ def get_youtube_trending():
     
     data = get_videos(items)
     
-    print("data", data)
-    
     return data
 
 def get_youtube_trending_by_hashtag(hashtag):
