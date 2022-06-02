@@ -8,7 +8,7 @@ def get_trending(platform):
     else:
         youtubeData = get_youtube_trending()
         
-        return convert_to_messages(platform ,youtubeData)
+        return convert_to_messages(youtubeData, platform )
   
 def get_trending_by_hashtag(platform, hashtag):
     if platform == "tiktok":
@@ -16,7 +16,12 @@ def get_trending_by_hashtag(platform, hashtag):
     else:
         return get_youtube_trending_by_hashtag(hashtag)
     
-def convert_to_messages(platform, results):
+def get_trending_by_category (category):
+    youtubeData = get_youtube_trending(category)
+    
+    return convert_to_messages(youtubeData)
+    
+def convert_to_messages(results, platform = 'youtube'):
     datas =[]
     
     if platform == "tiktok":

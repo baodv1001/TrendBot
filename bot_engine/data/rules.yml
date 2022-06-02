@@ -52,3 +52,8 @@ rules:
     steps:
       - intent: select_platform
       - action: action_select_platform
+  - rule: Reply trending by category
+    steps:
+      - intent: ask_for_youtube_trending_by_category
+      - action: utter_wait_a_minute
+      - action: action_top_trending_by_category

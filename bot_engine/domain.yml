@@ -16,6 +16,7 @@ intents:
   - ask_for_tiktok_trending_by_hashtag
   - confirm_hashtag
   - select_platform
+  - ask_for_youtube_trending_by_category
 
 responses:
   utter_default:
@@ -73,10 +74,12 @@ actions:
   - action_top_trending
   - action_trending_by_hashtag
   - action_select_platform
+  - action_top_trending_by_category
 
 entities:
   - hashtag
   - platform
+  - category
 
 slots:
   hashtag:
@@ -92,3 +95,10 @@ slots:
     mappings:
       - type: from_entity
         entity: platform
+
+  category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: category

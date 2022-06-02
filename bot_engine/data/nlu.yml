@@ -170,6 +170,19 @@ nlu:
       - nhờ bot giúp mình xem top trend trên [tiktok](platform) đi 
       - bot có thể cho mình xem thông tin về các trend mới trên [tiktok](platform) được không
 
+  - intent: ask_for_youtube_trending_by_category
+    examples: |
+      - xem thể loại [gaming](category) có gì hay
+      - có gì mới trong thể loại [music](category)
+      - hôm nay có gì trên [animation](category)
+      - lâu quá chưa xem tin trên [news](category)
+      - cùng xem thông tin nóng trên thể loại [pets](category) nào
+      - cập nhật thông tin hot trên [politics] đi
+      - có gì hay ho trên [sports](category)
+      - tìm hiểu cái gì mới trên [education](category) nhỉ
+      - cùng học hỏi cái mới trên [howto](category) nào
+      - thông tin mới trên thể loại [vehicles](category) đi
+
   - intent: ask_for_tiktok_trending_by_hashtag
     examples: |
       - cho anh xem trending theo hashtag trên tiktok đi 
@@ -219,3 +232,28 @@ nlu:
       - youtube
       - tiktok
       - twitter
+
+  - lookup: category
+    examples: |
+      - film      
+      - animation      
+      - autos      
+      - vehicles      
+      - music
+      - pets
+      - animals
+      - sports
+      - travel
+      - events
+      - gaming
+      - people 
+      - blogs
+      - comedy
+      - entertainment
+      - news
+      - politics
+      - howto
+      - style
+      - education
+      - science
+      - technology

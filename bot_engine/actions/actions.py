@@ -5,7 +5,7 @@ import json
 sys.path.insert(0, '../')
 
 from typing import Any, Text, Dict, List
-from trending_api import get_trending, get_trending_by_hashtag  
+from trending_api import get_trending, get_trending_by_category, get_trending_by_hashtag  
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
@@ -51,8 +51,6 @@ class ActionTrendingByHashTag(Action):
         print("Hashtag is", hashtag)
         print("Platform is", platform)
         
-        #dispatcher.utter_message('Chờ xíu nhé!')
-        
         result = get_trending_by_hashtag(platform, hashtag)
         
         for video in result:
@@ -75,4 +73,24 @@ class ActionSelectPlatform(Action):
         print("Platform is", platform)
         dispatcher.utter_message(text='{0}'.format(platform))
 
+        return []
+
+class ActionTrendingByCategory(Action):
+
+    def name(self) -> Text:
+        return "action_top_trending_by_category"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        category = next(tracker.get_latest_entity_values("category"),None)
+        print("Category is", category)
+        
+        results = get_trending_by_category(category)
+        
+
+        for result in results:    
+            dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+            
         return []
