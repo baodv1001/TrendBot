@@ -41,6 +41,9 @@ responses:
 
   utter_confirm:
     - text: Hashtag anh(chị) muốn tìm kiếm là gì
+    - text: Cho em biết rõ hashtag được không ạ
+    - text: Hashtag chính xác là gì ạ
+    - text: Đưa tao hashtag mày
 
   utter_noworries:
     - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^

@@ -22,6 +22,8 @@ stories:
       - action: action_select_platform
 
       - intent: ask_for_tiktok_trending_by_hashtag
+      - action: utter_wait_a_minute
+      - action: action_top_trending
       - action: utter_confirm
 
       - intent: confirm_hashtag
@@ -29,5 +31,6 @@ stories:
           - hashtag: seagame
       - slot_was_set:
           - hashtag: hashtag
+
       - action: utter_wait_a_minute
       - action: action_trending_by_hashtag

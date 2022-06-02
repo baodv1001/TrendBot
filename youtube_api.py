@@ -96,5 +96,3 @@ def get_category_Id (categoryName):
     }
     
     return switcher.get(categoryName,None)
-
-print(get_youtube_trending('music'))
