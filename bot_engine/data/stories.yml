@@ -5,18 +5,29 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_for_tiktok_trending
+
+      - intent: select_platform
+      - action: action_select_platform
+
+      - intent: ask_for_trending
+      - action: utter_wait_a_minute
       - action: action_top_trending
 
   - story: ask trending by hashtag
     steps:
       - intent: greet
       - action: utter_greet
+
+      - intent: select_platform
+      - action: action_select_platform
+
       - intent: ask_for_tiktok_trending_by_hashtag
       - action: utter_confirm
+
       - intent: confirm_hashtag
         entities:
-          - hashtag: singsong
+          - hashtag: seagame
       - slot_was_set:
           - hashtag: hashtag
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag

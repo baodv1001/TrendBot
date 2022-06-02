@@ -11,11 +11,6 @@ rules:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: Say 'I am a bot' anytime the user challenges
-    steps:
-      - intent: bot_challenge
-      - action: utter_iamabot
-
   - rule: Happy anytime the user praise
     steps:
       - intent: praise
@@ -44,9 +39,21 @@ rules:
   - rule: Reply trending hashtag tiktok
     steps:
       - intent: confirm_hashtag
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag
 
   - rule: Reply trending tiktok
     steps:
-      - intent: ask_for_tiktok_trending
+      - intent: ask_for_trending
+      - action: utter_wait_a_minute
       - action: action_top_trending
+
+  - rule: Reply select platform
+    steps:
+      - intent: select_platform
+      - action: action_select_platform
+  - rule: Reply trending by category
+    steps:
+      - intent: ask_for_youtube_trending_by_category
+      - action: utter_wait_a_minute
+      - action: action_top_trending_by_category
