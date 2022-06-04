@@ -11,12 +11,13 @@ intents:
   - confirm
   - praise
   - decry
-  - ask_for_trending
   - ask_ability
-  - ask_for_tiktok_trending_by_hashtag
+  - ask_for_trending_by_hashtag
   - confirm_hashtag
-  - select_platform
-  - ask_for_youtube_trending_by_category
+  - ask_for_trending_youtube
+  - ask_for_trending_youtube_by_category
+  - ask_for_trending_tiktok
+  - ask_for_trending_tiktok_by_category
 
 responses:
   utter_default:
@@ -40,7 +41,7 @@ responses:
     - text: Em xin lôĩ vì em chưa đủ thông minh ạ =(((
 
   utter_confirm:
-    - text: Hashtag và nền tảng anh(chị) muốn tìm kiếm là gì
+    - text: Hashtag anh(chị) muốn tìm kiếm là gì (Chỉ nhập từ khóa)
 
   utter_noworries:
     - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^
@@ -71,16 +72,18 @@ actions:
   - utter_confirm
   - utter_wait_a_minute
 
-  - action_top_trending
+  - action_top_trending_tiktok
+  - action_top_trending_youtube
   - action_trending_by_hashtag
   - action_select_platform
-  - action_top_trending_by_category
+  - action_top_youtube_trending_by_category
+  - action_top_tiktok_trending_by_category
 
 entities:
   - hashtag
   - platform
-  - username
-  - category
+  - youtube_category
+  - tiktok_category
 
 forms:
   platform_form:
@@ -95,10 +98,11 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_entity
-        entity: hashtag
+      - type: from_text
+        intent: confirm_hashtag
         conditions:
           - active_loop: hashtag_form
+            requested_slot: hashtag
 
   platform:
     type: text
@@ -107,9 +111,16 @@ slots:
       - type: from_entity
         entity: platform
 
-  category:
+  youtube_category:
     type: text
     influence_conversation: true
     mappings:
       - type: from_entity
-        entity: category
+        entity: youtube_category
+
+  tiktok_category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: tiktok_category

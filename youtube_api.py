@@ -1,10 +1,10 @@
 import os, requests, sys, time, json
 from unicodedata import category
-
+from dotenv import load_dotenv
 import googleapiclient.discovery
+load_dotenv()
 
 COUNTRY_CODE = "VN"
-API_KEY = ""
 
 api_service_name = "youtube"
 api_version = "v3"
@@ -16,7 +16,7 @@ def get_youtube_api_config():
 
 def api_request(categoryId = None):
     youtube = googleapiclient.discovery.build(
-        api_service_name, api_version, developerKey = API_KEY)
+        api_service_name, api_version, developerKey = get_youtube_api_config())
     
     request = youtube.videos().list(
         part = "snippet,contentDetails,statistics",
