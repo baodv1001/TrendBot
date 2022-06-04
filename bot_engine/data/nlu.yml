@@ -144,88 +144,230 @@ nlu:
       - tính năng còn kém quá
       - tính năng còn hơi ít nha
 
-  - intent: ask_for_trending
+  - intent: ask_for_trending_by_hashtag
     examples: |
-      - cho anh xem trending trên [tiktok](platform) đi
-      - bây giờ [tiktok](platform) đang có trend gì nhỉ
-      - lấy thông tin về trending trên [tiktok](platform) giúp anh
-      - xem trending ở [tiktok](platform) nào 
-      - có gì hot trên [tiktok](platform) ta
-      - vài video trending của [tiktok](platform) đi
-      - top trending [tiktok](platform) bây giờ là gì nhỉ?
-      - cho mình thông tin về trend trên [tiktok](platform) đi 
-      - hôm nay trend [tiktok](platform) có gì nhỉ?
-      - hôm nay có gì mới lạ trên [tiktok](platform) không ta?
-      - hình như có trend gì đó mới trên [tiktok](platform) à?
-      - cho mình biết được trend trên [tiktok](platform) đi?
-      - mình muốn cập nhật thông tin về trend ở [tiktok](platform) 
-      - gửi chị xem thông tin về trend của [tiktok](platform) đi
-      - trending bây giờ là gì nhỉ ở [tiktok](platform) ấy
-      - ngày hôm nay có trend gì mới trên [tiktok](platform) không thế?
-      - khám phá trending trên [tiktok](platform) đi
-      - hình như đang có trend gì đó trên [tiktok](platform) k
-      - top trend ở [tiktok](platform) là gì?
-      - [tiktok](platform) hôm nay có gì hay ho không 
-      - lâu quá chưa cập nhật thông tin về trending trên [tiktok](platform)
-      - nhờ bot giúp mình xem top trend trên [tiktok](platform) đi 
-      - bot có thể cho mình xem thông tin về các trend mới trên [tiktok](platform) được không
-
-  - intent: ask_for_youtube_trending_by_category
-    examples: |
-      - xem thể loại [gaming](category) có gì hay
-      - có gì mới trong thể loại [music](category)
-      - hôm nay có gì trên [animation](category)
-      - lâu quá chưa xem tin trên [news](category)
-      - cùng xem thông tin nóng trên thể loại [pets](category) nào
-      - cập nhật thông tin hot trên [politics] đi
-      - có gì hay ho trên [sports](category)
-      - tìm hiểu cái gì mới trên [education](category) nhỉ
-      - cùng học hỏi cái mới trên [howto](category) nào
-      - thông tin mới trên thể loại [vehicles](category) đi
-
-  - intent: ask_for_tiktok_trending_by_hashtag
-    examples: |
-      - cho anh xem trending theo hashtag trên tiktok đi 
-      - tìm các video trending theo hashtag trên tiktok giúp anh
-      - lấy thông tin về trending trên tiktok giúp anh theo từ khóa
-      - xem trending ở tiktok theo từ khóa nào
-      - trending theo hashtag ở tiktok nào
-      - anh muốn tìm kiếm trending theo từ khóa
-      - sử dụng từ khóa để tìm kiếm video trending tiktok nào
-      - sử dụng hashtag để tìm kiếm video trending tiktok nào
-      - mình muốn tìm kiếm trend ở tiktok theo từ khóa
-      - từ khóa này có phải là trend trên tiktok không?
-      - các video mới nhất của trend hashtag này là gì?
-      - mình có từ khóa này muốn tìm kiếm trên tiktok
-      - từ khóa này có thông tin gì trên tiktok ta?
-      - có thể cho mình tìm trend theo từ khóa ở tiktok được không?
+      - cho anh xem trending theo hashtag trên [tiktok](platform) đi
+      - tìm các video trending theo hashtag trên [youtube](platform) giúp anh
+      - lấy thông tin về trending trên [tiktok](platform) giúp anh theo từ khóa
+      - xem trending ở [youtube](platform) theo từ khóa nào
+      - trending theo hashtag ở [tiktok](platform) nào
+      - anh muốn tìm kiếm trending theo từ khóa trên [tiktok](platform)
+      - sử dụng từ khóa để tìm kiếm video trending [youtube](platform) nào
+      - sử dụng hashtag để tìm kiếm video trending [tiktok](platform) nào
+      - mình muốn tìm kiếm trend ở [youtube](platform) theo từ khóa
+      - từ khóa này có phải là trend trên [tiktok](platform) không?
+      - các video mới nhất của trend hashtag ở [tiktok](platform) là gì?
+      - mình có từ khóa này muốn tìm kiếm trên [tiktok](platform)
+      - từ khóa này có thông tin gì trên [tiktok](platform) ta?
+      - có thể cho mình tìm trend theo từ khóa ở [youtube](platform) được không?
 
   - intent: confirm_hashtag
     examples: |
-      - [cosplay](hashtag) trên [tiktok](platform) nha
-      - Hashtag là [cosplay](hashtag) trên [tiktok](platform)
-      - Từ khóa là [cosplay](hashtag) trên [tiktok](platform)
-      - hashtag anh muốn tìm là [cosplay](hashtag) trên [tiktok](platform)
-      - Từ khóa cần tìm kiếm là [cosplay](hashtag) trên [tiktok](platform)
-      - Anh muốn tìm về từ khóa [cosplay](hashtag) trên [tiktok](platform)
-      - Từ khóa mình cần tìm là [sontung](hashtag) trên [tiktok](platform)
-      - Có thể tìm giúp mình từ khóa [sontung](hashtag) trên [tiktok](platform)
-      - Hashtag cần tìm là [bienhinh](hashtag) trên [tiktok](platform)
-      - Mình muốn tìm kiếm thông tin về từ khóa [anime](hashtag) trên [tiktok](platform)
-      - Từ khóa [anime](hashtag) là từ khóa mình muốn tìm kiếm trên [tiktok](platform)
-      - Hãy giúp mình tìm hashtag [leageoflegend](hashtag) trên [tiktok](platform)
-      - Hashtag mình cần tìm là [tocdep](hashtag) trên [tiktok](platform)
-      - Hashtag là [gaixinh](hashtag) nha bot trên [tiktok](platform)
-      - Bot có thể giúp mình tìm trend theo hashtag [foryourpage](hashtag) trên [tiktok](platform)
-      - Còn về hashtag [sontungmtp](hashtag) thì sao bot trên [tiktok](platform)
-      - Thông tin chi tiết mới về từ khóa [blackpink](hashtag) đi trên [tiktok](platform)
-      - Từ khóa [vtv24](hashtag) có vẻ hot trên [tiktok](platform)
-      - Từ khóa [sontung](hashtag) có vẻ đang hot trên [tiktok](platform)
+      - [cosplay](hashtag)
+      - [gaixinh](hashtag)
+      - [sontung](hashtag)
+      - [comedy](hashtag)
+      - [bienhinh](hashtag)
+      - [tocdep](hashtag)
+      - [leageoflegend](hashtag)
+      - [vtv24](hashtag)
+      - [blackpink](hashtag)
+      - [anime](hashtag)
+      - [xuhuong](hashtag)
+      - [viral](hashtag)
+      - [chipu](hashtag)
+      - [dancer](hashtag)
+      - [coding](hashtag)
+      - [cooking](hashtag)
+      - [lienquan](hashtag)
+      - [artist](hashtag)
+      - [music](hashtag)
+      - [love](hashtag)
 
-  - intent: select_platform
+  - intent: ask_for_trending_tiktok
     examples: |
-      - Tìm kiếm trên [youtube](platform)
-      - Tìm kiếm trên [tiktok](platform)
+      - cho anh xem trending trên tiktok đi
+      - bây giờ tiktok đang có trend gì nhỉ
+      - lấy thông tin về trending trên tiktok giúp anh
+      - xem trending ở tiktok nào 
+      - có gì hot trên tiktok ta
+      - vài video trending của tiktok đi
+      - top trending tiktok bây giờ là gì nhỉ?
+      - cho mình thông tin về trend trên platform đi 
+      - hôm nay trend tiktok có gì nhỉ?
+      - hôm nay có gì mới lạ trên tiktok không ta?
+      - hình như có trend gì đó mới trên tiktok à?
+      - cho mình biết được trend trên tiktok đi?
+      - mình muốn cập nhật thông tin về trend ở tiktok
+      - gửi chị xem thông tin về trend của tiktok đi
+      - trending bây giờ là gì nhỉ ở tiktok ấy
+      - ngày hôm nay có trend gì mới trên tiktok không thế?
+      - khám phá trending trên tiktok đi
+      - hình như đang có trend gì đó trên tiktok phải không
+      - top trend ở tiktok là gì?
+      - tiktok hôm nay có gì hay ho không 
+      - lâu quá chưa cập nhật thông tin về trending trên tiktok
+      - nhờ bot giúp mình xem top trend trên tiktok đi 
+      - bot có thể cho mình xem thông tin về các trend mới trên tiktok được không
+
+  - intent: ask_for_trending_youtube
+    examples: |
+      - cho anh xem trending trên youtube đi
+      - bây giờ youtube đang có trend gì nhỉ
+      - lấy thông tin về trending trên youtube giúp anh
+      - xem trending ở youtube nào 
+      - có gì hot trên youtube ta
+      - vài video trending của youtube đi
+      - top trending youtube bây giờ là gì nhỉ?
+      - cho mình thông tin về trend trên youtube đi 
+      - hôm nay trend youtube có gì nhỉ?
+      - hôm nay có gì mới lạ trên youtube không ta?
+      - hình như có trend gì đó mới trên youtube à?
+      - cho mình biết được trend trên youtube đi?
+      - mình muốn cập nhật thông tin về trend ở youtube
+      - gửi chị xem thông tin về trend của youtube đi
+      - trending bây giờ là gì nhỉ ở youtube ấy
+      - ngày hôm nay có trend gì mới trên youtube không thế?
+      - khám phá trending trên youtube đi
+      - hình như đang có trend gì đó trên youtube phải không
+      - top trend ở youtube là gì?
+      - youtube hôm nay có gì hay ho không 
+      - lâu quá chưa cập nhật thông tin về trending trên youtube
+      - nhờ bot giúp mình xem top trend trên youtube đi 
+      - bot có thể cho mình xem thông tin về các trend mới trên youtube được không
+
+  - intent: ask_for_trending_tiktok_by_category
+    examples: |
+      - xem phân loại [hashtag](tiktok_category) trên tiktok
+      - xem phân loại [hashtag](tiktok_category) 
+      - có gì mới trong phân loại [từ khóa](tiktok_category)
+      - có trend gì về [music](tiktok_category) không
+      - lâu quá chưa xem tredn về [âm thanh](tiktok_category)
+      - cập nhật trend hot về [hiệu ứng](tiktok_category) đi
+      - có [effect](tiktok_category) gì hay ho không ta
+      - tìm [âm thanh](tiktok_category) mới nổi đi
+      - tìm [âm thanh](tiktok_category) mới nổi trên tiktok đi
+      - [hiệu ứng](tiktok_category) đang trend thế nhỉ
+      - [hiệu ứng](tiktok_category) đang trend trên tiktok thế nhỉ
+      - [từ khóa](tiktok_category) nào đang hot trong những ngày qua thế
+      - [Từ khóa](tiktok_category)
+      - [Music](tiktok_category)
+      - [Hashtag](tiktok_category)
+      - [Effect](tiktok_category)
+      - [Hiệu ứng](tiktok_category)
+      - [Âm thanh](tiktok_category)
+      - [Âm nhạc](tiktok_category)
+
+  - intent: ask_for_trending_youtube_by_category
+    examples: |
+      - xem thể loại [gaming](youtube_category) có gì hay
+      - xem thể loại [gaming](youtube_category) trên youtube có gì hay
+      - có gì mới trong thể loại [music](youtube_category)
+      - hôm nay có gì trên [animation](youtube_category)
+      - lâu quá chưa xem tin trên [news](youtube_category)
+      - lâu quá chưa xem tin [news](youtube_category) trên youtube 
+      - cùng xem thông tin nóng trên thể loại [pets](youtube_category) nào
+      - cập nhật thông tin hot trên [politics](youtube_category) đi
+      - có gì hay ho trên [sports](youtube_category)
+      - tìm hiểu cái gì mới trên [education](youtube_category) nhỉ
+      - tìm hiểu cái gì mới trên [education](youtube_category) trên youtube đi
+      - cùng học hỏi cái mới trên [howto](youtube_category) nào
+      - thông tin mới trên thể loại [vehicles](youtube_category) đi
+      - thông tin mới trên youtube với thể loại [vehicles](youtube_category) đi
+
+  - lookup: hashtag
+    examples: |
+      - sontung
+      - cosplay
+      - mtp
+      - vtv24
+      - seagames
+      - covid
+      - worldcup
+      - gaixinh 
+      - traidep
+      - fyp
+      - foryoupage
+      - singsong
+      - funny
+      - duet
+      - trending
+      - love
+      - memes
+      - cute
+      - comedy
+      - featureme
+      - repost
+      - music
+      - new
+      - workout
+      - artist
+      - happy
+      - gaming
+      - freefire
+      - leageoflegends
+      - lol
+      - pubg
+      - mobile
+      - lienquan
+      - anime
+      - bts
+      - quanghungmasterd
+      - cat
+      - dog
+      - beautiful
+      - cooking
+      - photography
+      - dancer
+      - slowmo
+      - gym
+      - singing
+      - lifehack
+      - repect
+      - football
+      - nature
+      - amazing
+      - wibu
+      - vacaiket 
+      - ngoctrinh
+      - hienho
+      - datvilla
+      - xuhuong
+      - tiktok
+      - khaicakhia
+      - phamvinh
+      - ciin
+      - lebong
+      - change.mie
+      - thaybeou40
+      - 3tl
+      - ancungtiktok
+      - bienhinh
+      - nau an
+      - ngoaihanganh
+      - manchester
+      - damcuoi
+      - mientay
+      - giaxang
+      - devuong
+      - skincare
+      - genz
+      - gaidep
+      - hotgirl
+      - lisa
+      - rose
+      - jisoo
+      - blackpink
+      - missuniver
+      - lazada
+      - shopee
+      - tiki
+      - it
+      - cong nghe thong tin
+      - laptrinh
+      - coding
+      - lifestyle
+      - heallth
 
   - lookup: platform
     examples: |
@@ -233,7 +375,7 @@ nlu:
       - tiktok
       - twitter
 
-  - lookup: category
+  - lookup: youtube_category
     examples: |
       - film      
       - animation      
