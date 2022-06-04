@@ -1,23 +1,34 @@
 import os, requests, sys, time, json
+from unicodedata import category
+
+import googleapiclient.discovery
 
 COUNTRY_CODE = "VN"
 API_KEY = ""
 
-snippet_features = ["title", "publishedAt", "channelTitle"]
+api_service_name = "youtube"
+api_version = "v3"
 
-def api_request(page_token, country_code):
-    request_url = f"https://www.googleapis.com/youtube/v3/videos?part=id,statistics,snippet{page_token}chart=mostPopular&regionCode={country_code}&maxResults=5&key={API_KEY}"
-    
-    request = requests.get(request_url)
-    
-    if request.status_code == 429:
-        print("Temp-Banned due to excess requests, please wait and continue later")
-        sys.exit()
-    
-    return request.json()
+snippet_features = ["title", "channelTitle"]
 
 def get_youtube_api_config():
     return os.environ.get("youtube-api-key")
+
+def api_request(categoryId = None):
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, developerKey = API_KEY)
+    
+    request = youtube.videos().list(
+        part = "snippet,contentDetails,statistics",
+        chart = "mostPopular",
+        maxResults = 3,
+        regionCode = COUNTRY_CODE,
+        videoCategoryId = categoryId
+    )
+    
+    response = request.execute()
+    
+    return response
 
 def get_videos(items):
     lines = []
@@ -31,41 +42,59 @@ def get_videos(items):
         features = [(snippet.get(feature, "")) for feature in snippet_features]
 
         thumbnail_link = (
-            snippet.get("thumbnails", dict()).get("default", dict()).get("url", "")
+            snippet.get("thumbnails", dict()).get("medium", dict()).get("url", "")
         )
-        trending_date = time.strftime("%y.%d.%m")
 
         line = {
             "id": video_id,
             "features": features,
-            "trending_date": (trending_date),
             "thumbnail_link": (thumbnail_link),
         }
+        
         lines.append(line)
     return lines
 
 
+def get_youtube_trending(categoryName = None):  
+    categoryId = get_category_Id(categoryName)
+
+    video_data_page = api_request(categoryId)
+    
+    items = video_data_page.get("items", [])
+    
+    data = get_videos(items)
+    
+    return data
+
 def get_youtube_trending_by_hashtag(hashtag):
-    data = []
-    next_page_token="&"
+    print ('Implementing: ' + hashtag)
+
+def get_category_Id (categoryName):
+    switcher = {
+            'film' : 1,
+            'animation' : 1,
+            'autos' : 2,
+            'vehicles' : 2,
+            'music' : 10,
+            'pets' : 15,
+            'animals' : 15,
+            'sports' : 17,
+            'travel' : 19,
+            'events' : 19,
+            'gaming' : 20,
+            'people ' : 22,
+            'blogs' : 22,
+            'comedy' : 23,
+            'entertainment' : 24,
+            'news' : 25,
+            'politics' : 25,
+            'howto' : 26,
+            'style' : 26,
+            'education' : 27,
+            'science' : 28,
+            'technology' : 28,
+    }
     
-    global API_KEY
-    API_KEY = get_youtube_api_config()
-    
-    while next_page_token is not None:
-        video_data_page = api_request(next_page_token, COUNTRY_CODE)
-        
-        next_page_token = video_data_page.get("nextPageToken", None)
-        
-        next_page_token = (
-            f"&pageToken={next_page_token}&"
-            if next_page_token is not None
-            else next_page_token
-        )
-        
-        items = video_data_page.get("items", [])
-        data += get_videos(items)
-    
-    print(data)
-    
-    return [{'title':'implementing', 'cover':'image-test.png' }]
+    return switcher.get(categoryName,None)
+
+print(get_youtube_trending('music'))

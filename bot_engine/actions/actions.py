@@ -5,10 +5,9 @@ import json
 sys.path.insert(0, '../')
 
 from typing import Any, Text, Dict, List
-from trending_api import get_trending_by_hashtag  
+from trending_api import get_trending, get_trending_by_category, get_trending_by_hashtag  
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
-from tiktok_api import get_tiktok_trending, get_tiktok_trending_by_hashtag
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
@@ -24,12 +23,18 @@ class ActionTopTrending(Action):
         platform = next(tracker.get_latest_entity_values("platform"),None)
         print("Platform is", platform)
 
-        #result = get_trending(platform)
-        result = get_tiktok_trending()
+        #dispatcher.utter_message('Chờ xíu nhé!')
         
-        for category in result:
-            dispatcher.utter_message(text='{0}: {1} - {2}'.format(category['desc'], category['name'], category['url']))
-
+        results = get_trending(platform)
+        
+        if(platform == "tiktok"):
+        
+            for category in results:
+                dispatcher.utter_message(text='{0}: {1} - {2}'.format(category['desc'], category['name'], category['url']))
+        else:
+            for result in results:    
+                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+            
         return []
 
 class ActionTrendingByHashTag(Action):
@@ -73,17 +78,23 @@ class ActionSelectPlatform(Action):
         dispatcher.utter_message(text='{0}'.format(platform))
 
         return []
-    
-class ValidatePlatformSelected(FormValidationAction):
+
+class ActionTrendingByCategory(Action):
+
     def name(self) -> Text:
-        return "validate_platform_select"
-    def validate_platform(self, slot_value: Any, 
-                          dispatcher: CollectingDispatcher, 
-                          tracker: Tracker, 
-                          domain: DomainDict):
+        return "action_top_trending_by_category"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        if(slot_value == "tiktok" or slot_value == "youtube"):
-            dispatcher.utter_message(text='Platform is: {0} '.format(slot_value))
-            return {"platform" : slot_value}
-                                  
-        return {"platform": None}
+        category = next(tracker.get_latest_entity_values("category"),None)
+        print("Category is", category)
+        
+        results = get_trending_by_category(category)
+        
+
+        for result in results:    
+            dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+            
+        return []

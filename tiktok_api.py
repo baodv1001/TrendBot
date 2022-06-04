@@ -12,7 +12,7 @@ api_host_2 = os.environ.get("api-host-2")
 def get_tiktok_trending():
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
 
-	querystring = {"count":"10","region":"VN"}
+	querystring = {"count":"3","region":"VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
@@ -35,7 +35,7 @@ def get_tiktok_trending():
 def get_tiktok_trending_by_hashtag(hashtag):
 	url = "https://tiktok-video-no-watermark2.p.rapidapi.com/challenge/search"
  
-	querystring = {"keywords": hashtag}
+	querystring = {"keywords": hashtag, "count": "3", "region": "VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_1,
@@ -114,6 +114,7 @@ def convert_category(categories):
 					'url': 'https://www.tiktok.com/tag/{0}'.format(category['challenge_info']['cha_name'])
 				}
 			)
+   
 		# effect
 		if(category['category_type'] == 3):
 			result.append(
@@ -128,6 +129,7 @@ def convert_category(categories):
 					'url': 'https://www.tiktok.com/sticker/{0}-{1}'.format(category['effect_info']['name'].replace(' ','-'),category['effect_info']['effect_id'] )
 				}
 			)
+   
 		# music
 		if(category['category_type'] == 1):
 			result.append(

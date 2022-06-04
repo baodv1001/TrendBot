@@ -9,7 +9,8 @@ stories:
       - intent: select_platform
       - action: action_select_platform
 
-      - intent: ask_for_tiktok_trending
+      - intent: ask_for_trending
+      - action: utter_wait_a_minute
       - action: action_top_trending
 
   - story: ask trending by hashtag
@@ -30,4 +31,5 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag

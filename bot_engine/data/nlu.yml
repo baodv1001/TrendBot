@@ -144,31 +144,44 @@ nlu:
       - tính năng còn kém quá
       - tính năng còn hơi ít nha
 
-  - intent: ask_for_tiktok_trending
+  - intent: ask_for_trending
     examples: |
-      - cho anh xem trending trên tiktok đi 
-      - bây giờ tiktok đang có trend gì nhỉ
-      - lấy thông tin về trending trên tiktok giúp anh
-      - xem trending ở tiktok nào 
-      - có gì hot trên tiktok ta
-      - vài video trending của tiktok đi
-      - top trending tiktok bây giờ là gì nhỉ?
-      - cho mình thông tin về trend trên tiktok đi 
-      - hôm nay trend tiktok có gì nhỉ?
-      - hôm nay có gì mới lạ trên tiktok không ta?
-      - hình như có trend gì đó mới trên tiktok à?
-      - cho mình biết được trend trên tiktok đi?
-      - mình muốn cập nhật thông tin về trend ở tiktok 
-      - gửi chị xem thông tin về trend của tiktok đi
-      - trending bây giờ là gì nhỉ, ở tiktok ấy
-      - ngày hôm nay có trend gì mới trên tiktok không thế?
-      - khám phá trending trên tiktok đi
-      - hình như đang có trend gì đó trên tiktok
-      - top trend ở tiktok là gì?
-      - tiktok hôm nay có gì hay ho không 
-      - lâu quá chưa cập nhật thông tin về trending trên tiktok
-      - nhờ bot giúp mình xem top trend trên tiktok đi 
-      - bot có thể cho mình xem thông tin về các trend mới trên tiktok được không
+      - cho anh xem trending trên [tiktok](platform) đi
+      - bây giờ [tiktok](platform) đang có trend gì nhỉ
+      - lấy thông tin về trending trên [tiktok](platform) giúp anh
+      - xem trending ở [tiktok](platform) nào 
+      - có gì hot trên [tiktok](platform) ta
+      - vài video trending của [tiktok](platform) đi
+      - top trending [tiktok](platform) bây giờ là gì nhỉ?
+      - cho mình thông tin về trend trên [tiktok](platform) đi 
+      - hôm nay trend [tiktok](platform) có gì nhỉ?
+      - hôm nay có gì mới lạ trên [tiktok](platform) không ta?
+      - hình như có trend gì đó mới trên [tiktok](platform) à?
+      - cho mình biết được trend trên [tiktok](platform) đi?
+      - mình muốn cập nhật thông tin về trend ở [tiktok](platform) 
+      - gửi chị xem thông tin về trend của [tiktok](platform) đi
+      - trending bây giờ là gì nhỉ ở [tiktok](platform) ấy
+      - ngày hôm nay có trend gì mới trên [tiktok](platform) không thế?
+      - khám phá trending trên [tiktok](platform) đi
+      - hình như đang có trend gì đó trên [tiktok](platform) k
+      - top trend ở [tiktok](platform) là gì?
+      - [tiktok](platform) hôm nay có gì hay ho không 
+      - lâu quá chưa cập nhật thông tin về trending trên [tiktok](platform)
+      - nhờ bot giúp mình xem top trend trên [tiktok](platform) đi 
+      - bot có thể cho mình xem thông tin về các trend mới trên [tiktok](platform) được không
+
+  - intent: ask_for_youtube_trending_by_category
+    examples: |
+      - xem thể loại [gaming](category) có gì hay
+      - có gì mới trong thể loại [music](category)
+      - hôm nay có gì trên [animation](category)
+      - lâu quá chưa xem tin trên [news](category)
+      - cùng xem thông tin nóng trên thể loại [pets](category) nào
+      - cập nhật thông tin hot trên [politics] đi
+      - có gì hay ho trên [sports](category)
+      - tìm hiểu cái gì mới trên [education](category) nhỉ
+      - cùng học hỏi cái mới trên [howto](category) nào
+      - thông tin mới trên thể loại [vehicles](category) đi
 
   - intent: ask_for_tiktok_trending_by_hashtag
     examples: |
@@ -308,3 +321,34 @@ nlu:
       - coding
       - lifestyle
       - heallth
+
+  - lookup: platform
+    examples: |
+      - youtube
+      - tiktok
+      - twitter
+
+  - lookup: category
+    examples: |
+      - film      
+      - animation      
+      - autos      
+      - vehicles      
+      - music
+      - pets
+      - animals
+      - sports
+      - travel
+      - events
+      - gaming
+      - people 
+      - blogs
+      - comedy
+      - entertainment
+      - news
+      - politics
+      - howto
+      - style
+      - education
+      - science
+      - technology

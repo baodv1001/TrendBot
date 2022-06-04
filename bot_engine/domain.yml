@@ -11,11 +11,12 @@ intents:
   - confirm
   - praise
   - decry
-  - ask_for_tiktok_trending
+  - ask_for_trending
   - ask_ability
   - ask_for_tiktok_trending_by_hashtag
   - confirm_hashtag
   - select_platform
+  - ask_for_youtube_trending_by_category
 
 responses:
   utter_default:
@@ -55,6 +56,9 @@ responses:
   utter_iamabot:
     - text: Tôi là TrendBot
 
+  utter_wait_a_minute:
+    - text: Đợi xíu nhé!
+
 actions:
   - utter_greet
   - utter_happy
@@ -65,15 +69,18 @@ actions:
   - utter_fallback
   - utter_iamabot
   - utter_confirm
+  - utter_wait_a_minute
+
   - action_top_trending
   - action_trending_by_hashtag
   - action_select_platform
-  - validate_platform_select
+  - action_top_trending_by_category
 
 entities:
   - hashtag
   - platform
   - username
+  - category
 
 forms:
   platform_form:
@@ -99,13 +106,10 @@ slots:
     mappings:
       - type: from_entity
         entity: platform
-        conditions:
-          - active_loop: platform_form
-            requested_slot: platform
 
-  username:
+  category:
     type: text
-    influence_conversation: false
+    influence_conversation: true
     mappings:
       - type: from_entity
-        entity: username
+        entity: category
