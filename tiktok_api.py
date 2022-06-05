@@ -4,15 +4,68 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 
+from sqlalchemy import null
+
 load_dotenv()
 api_host_1 = os.environ.get("api-host-1")
 api_key = os.environ.get("api-key")
 api_host_2 = os.environ.get("api-host-2")
 
+def convert_category(categories):
+	result = []
+
+	for category in categories:
+		# hashtag
+		if(category['category_type'] == 0):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['challenge_info']['cha_name'],
+					'id': category['challenge_info']['cid'],
+					'user_count': category['challenge_info']['user_count'],
+					'view_count': category['challenge_info']['view_count'],
+					'author': '',
+					'url': 'https://www.tiktok.com/tag/{0}'.format(category['challenge_info']['cha_name'])
+				}
+			)
+   
+		# effect
+		if(category['category_type'] == 3):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['effect_info']['name'],
+					'id': category['effect_info']['effect_id'],
+					'user_count': category['effect_info']['user_count'],
+					'view_count': category['effect_info']['vv_count'],
+					'author': category['effect_info']['owner_nickname'],
+					'url': 'https://www.tiktok.com/sticker/{0}-{1}'.format(category['effect_info']['name'].replace(' ','-'),category['effect_info']['effect_id'] )
+				}
+			)
+   
+		# music
+		if(category['category_type'] == 1):
+			result.append(
+				{
+					'desc': category['desc'],
+					'type': category['category_type'],
+					'name': category['music_info']['title'],
+					'id': category['music_info']['mid'],
+					'user_count': category['music_info']['user_count'],
+					'view_count': 0,
+					'author': category['music_info']['author'],
+					'url': 'https://www.tiktok.com/music/{0}-{1}'.format(category['music_info']['title'].replace(' ','-'), category['music_info']['mid'])
+				}
+			)
+
+	return result
+
 def get_tiktok_trending():
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
 
-	querystring = {"count":"3","region":"VN"}
+	querystring = {"count":"20","region":"VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
@@ -24,12 +77,35 @@ def get_tiktok_trending():
 	res = json.loads(response.text)
 
 	categories = res['category_list']
+	print(categories)
 
 	res = convert_category(categories)
 
-	# for category in res:
-	# 	get_video_by_category(category)
- 
+	jsonFile = open("data/data.json", "w")
+	jsonFile.write(json.dumps(res))
+	jsonFile.close()
+
+	return res
+
+def get_tiktok_list_trend_by_category(category):
+	f = open('data/data.json')
+	data = json.load(f)
+	
+	type = null;
+
+	if category == 'hashtag':
+		type = 0
+	if category == 'music':
+		type = 1
+	if category == 'effect':
+		type = 3		
+
+	res = []
+	for category in data:
+		if category['type'] == type:
+			videos = get_video_by_category(category)
+			category["videos"] = videos
+			res.append(category)
 	return res
 
 def get_tiktok_trending_by_hashtag(hashtag):
@@ -96,57 +172,6 @@ def convert_data(data):
 		)
 	return result
 
-def convert_category(categories):
-	result = []
-
-	for category in categories:
-		# hashtag
-		if(category['category_type'] == 0):
-			result.append(
-				{
-					'desc': category['desc'],
-					'type': category['category_type'],
-					'name': category['challenge_info']['cha_name'],
-					'id': category['challenge_info']['cid'],
-					'user_count': category['challenge_info']['user_count'],
-					'view_count': category['challenge_info']['view_count'],
-					'author': '',
-					'url': 'https://www.tiktok.com/tag/{0}'.format(category['challenge_info']['cha_name'])
-				}
-			)
-   
-		# effect
-		if(category['category_type'] == 3):
-			result.append(
-				{
-					'desc': category['desc'],
-					'type': category['category_type'],
-					'name': category['effect_info']['name'],
-					'id': category['effect_info']['effect_id'],
-					'user_count': category['effect_info']['user_count'],
-					'view_count': category['effect_info']['vv_count'],
-					'author': category['effect_info']['owner_nickname'],
-					'url': 'https://www.tiktok.com/sticker/{0}-{1}'.format(category['effect_info']['name'].replace(' ','-'),category['effect_info']['effect_id'] )
-				}
-			)
-   
-		# music
-		if(category['category_type'] == 1):
-			result.append(
-				{
-					'desc': category['desc'],
-					'type': category['category_type'],
-					'name': category['music_info']['title'],
-					'id': category['music_info']['mid'],
-					'user_count': category['music_info']['user_count'],
-					'view_count': 0,
-					'author': category['music_info']['author'],
-					'url': 'https://www.tiktok.com/music/{0}-{1}'.format(category['music_info']['title'].replace(' ','-'), category['music_info']['mid'])
-				}
-			)
-
-	return result
-
 def get_video_by_category(category):
 	if category['type']==0:
 		print('{0}: {1}'.format(category['desc'], category['name']))
@@ -162,7 +187,7 @@ def get_video_by_category(category):
 def get_video_by_music(id):
 	url = 'https://tokapi-mobile-version.p.rapidapi.com/v1/music/posts/{0}'.format(id)
 
-	querystring = {"count":"5"}
+	querystring = {"count":"1"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
@@ -177,7 +202,7 @@ def get_video_by_music(id):
 def get_video_by_challenge(id):
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/hashtag/posts/{0}".format(id)
 
-	querystring = {"count":"5"}
+	querystring = {"count":"1"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
@@ -193,7 +218,7 @@ def get_video_by_challenge(id):
 def get_video_by_effect(id):
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/sticker/posts/{0}".format(id)
 
-	querystring = {"count":"5"}
+	querystring = {"count":"1"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,

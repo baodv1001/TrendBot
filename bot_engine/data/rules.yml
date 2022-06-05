@@ -36,31 +36,55 @@ rules:
       - intent: nlu_fallback
       - action: utter_fallback
 
-  - rule: Reply trending hashtag tiktok
+  - rule: User ask about trending on tiktok and show category
+    steps:
+      - intent: ask_for_trending_tiktok
+      - action: action_top_trending_tiktok
+
+  - rule: User ask about trending on youtube and show category
+    steps:
+      - intent: ask_for_trending_youtube
+      - action: action_top_trending_youtube
+
+  - rule: Reply user tiktok trending by category selected
+    steps:
+      - intent: ask_for_trending_tiktok_by_category
+      - action: action_top_tiktok_trending_by_category
+
+  - rule: Reply user youtube trending by category selected
+    steps:
+      - intent: ask_for_trending_youtube_by_category
+      - action: action_top_youtube_trending_by_category
+
+  - rule: Find trending by hashtag
+    steps:
+      - intent: ask_for_trending_by_hashtag
+      - action: utter_confirm
+
+  - rule: Confirm hashtag
     steps:
       - intent: confirm_hashtag
-      - action: utter_wait_a_minute
+      - action: hashtag_form
+      - active_loop: hashtag_form
+
+  - rule: Reply trending by hashtag
+    condition:
+      - active_loop: hashtag_form
+    steps:
+      - action: hashtag_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
       - action: action_trending_by_hashtag
 
-  - rule: Reply trending tiktok
-    steps:
-      - intent: ask_for_trending
-      - action: utter_wait_a_minute
-      - action: action_top_trending
+  # - rule: Reply trending tiktok
+  #   steps:
+  #     - intent: ask_for_trending
+  #     - action: utter_wait_a_minute
+  #     - action: action_top_trending
 
-  - rule: Reply select platform
-    steps:
-      - intent: select_platform
-      - action: action_select_platform
-
-  - rule: Reply trending by category
-    steps:
-      - intent: ask_for_youtube_trending_by_category
-      - action: utter_wait_a_minute
-      - action: action_top_trending_by_category
-  - rule: Reply ask trending by hashtag
-    steps:
-      - intent: ask_for_tiktok_trending_by_hashtag
-      - action: utter_wait_a_minute
-      - action: action_top_trending
-      - action: utter_confirm
+  # - rule: Reply trending by category
+  #   steps:
+  #     - intent: ask_for_trending_youtube_by_category
+  #     - action: utter_wait_a_minute
+  #     - action: action_top_trending_by_category
