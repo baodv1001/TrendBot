@@ -31,7 +31,7 @@ class GetName(Action):
         first_name = r['first_name']
         last_name = r['last_name']
         
-        print("Hello", first_name, ' ', last_name)
+        print("GetName_Action - FirstName: {0} - LastName: {1}".format(first_name, last_name))
         
         return [SlotSet('name', first_name), SlotSet('surname', last_name)]
 
@@ -45,8 +45,7 @@ class ActionTopTrendingTikTok(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        platform = next(tracker.get_latest_entity_values("platform"),None)
-        print("Platform is", platform)
+        print("TopTrendingTiktok_Action")
 
         results = get_tiktok_trending()
         buttons = []
@@ -73,14 +72,17 @@ class ActionTopTrendingYoutube(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
+        print("TopTrendingYoutube_Action")
+        
         most_recent_state = tracker.current_state()
+        
+        #implementing
         sender_id = most_recent_state['sender_id']
         
         results = get_trending()
 
         for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-
         return []
 
 class ActionTrendingByHashTag(Action):
@@ -92,34 +94,15 @@ class ActionTrendingByHashTag(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        platform = tracker.get_slot("platform");
-        hashtag = tracker.get_slot("hashtag");
+        platform = tracker.get_slot("platform")
+        hashtag = tracker.get_slot("hashtag")
 
-
-        print("Platform is", platform)
-        print("Hashtag is", hashtag)
+        print("TrendingByHashTag_Action - Platform: {0} - Hashtag: {1}".format(platform, hashtag))
         
         result = get_trending_by_hashtag(platform, hashtag)
         
         for video in result:
             dispatcher.utter_message(text=video['title'], image=video['cover'])
-
-        return []
-    
-
-class ActionSelectPlatform(Action):
-
-    def name(self) -> Text:
-        return "action_select_platform"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        platform = next(tracker.get_latest_entity_values("platform"),None)
-        
-        print("Platform is", platform)
-        dispatcher.utter_message(text='{0}'.format(platform))
 
         return []
 
@@ -134,7 +117,8 @@ class ActionTrendingByTikTokCategory(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         tiktok_category = next(tracker.get_latest_entity_values("tiktok_category"),None)
-        print("Tiktok Category is", tiktok_category)
+        
+        print("TrendingByTiktokCategory_Action - Category: {0}".format(tiktok_category))
         
         if tiktok_category:
             dispatcher.utter_message(text='Những trend mới nhất theo {0} là :'.format(tiktok_category))
@@ -157,7 +141,8 @@ class ActionTrendingByYoutubeCategory(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         youtube_category = next(tracker.get_latest_entity_values("youtube_category"),None)
-        print("Youtube Category is", youtube_category)
+        
+        print("TrendingByYoutubeCategory_Action - Category: {0}".format(youtube_category))
         
         results = get_trending_by_category(youtube_category)
 

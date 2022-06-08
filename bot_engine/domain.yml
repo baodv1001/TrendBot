@@ -71,7 +71,6 @@ actions:
   - action_top_trending_tiktok
   - action_top_trending_youtube
   - action_trending_by_hashtag
-  - action_select_platform
   - action_top_youtube_trending_by_category
   - action_top_tiktok_trending_by_category
   - action_name
