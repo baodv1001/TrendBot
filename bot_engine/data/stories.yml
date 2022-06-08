@@ -1,10 +1,18 @@
 version: "3.1"
 
 stories:
-  - story: ask top tiktok trending path
+  - story: basic_greet
     steps:
       - intent: greet
+      - action: action_name
+      - slot_was_set:
+          - name: Tu
+      - slot_was_set:
+          - surname: Dang
       - action: utter_greet
+
+  - story: ask top tiktok trending path
+    steps:
       - intent: ask_for_trending_tiktok
       - action: action_top_trending_tiktok
       - intent: ask_for_trending_tiktok_by_category
@@ -12,8 +20,6 @@ stories:
 
   - story: ask top youtube trending path
     steps:
-      - intent: greet
-      - action: utter_greet
       - intent: ask_for_trending_youtube
       - action: action_top_trending_youtube
       - intent: ask_for_trending_youtube_by_category
@@ -21,8 +27,6 @@ stories:
 
   - story: ask trending by hashtag
     steps:
-      - intent: greet
-      - action: utter_greet
       - intent: ask_for_trending_by_hashtag
         entities:
           - platform: tiktok
@@ -39,5 +43,4 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      # - action: utter_wait_a_minute
       - action: action_trending_by_hashtag

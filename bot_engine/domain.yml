@@ -21,42 +21,37 @@ intents:
 
 responses:
   utter_default:
-    - text:
-        Em xin lỗi, em chưa hiểu ý muốn của anh(chị) ạ. Anh chị có thể nói lại được
-        không ạ
+    - text: Bot xin lỗi, bot chưa hiểu ý muốn của bạn. Bạn có thể nói lại được không?
+  utter_fallback:
+    - text: Bot xin lỗi, bot chưa hiểu ý muốn của bạn. Bạn có thể nói lại được không?
 
   utter_greet:
-    - text:
-        "Em chào anh(chị) ạ. \nEm là chatbot được thiết kế để giúp anh chị theo dõi\
-        \ xu hướng trên mạng xã hội ạ"
+    - text: "Bot chào {name} {surname}!
+        \nBot được thiết kế để giúp bạn theo dõi xu hướng trên mạng xã hội."
 
   utter_goodbye:
-    - text: Hẹn gặp lại anh chị ạ ^^
+    - text: Hẹn gặp lại bạn ^^
       image: https://i.imgur.com/nGF1K8f.jpg
 
-  utter_happy:
-    - text: Hì hì, anh chị khen quá lời rồi ạ
-
-  utter_sorry:
-    - text: Em xin lôĩ vì em chưa đủ thông minh ạ =(((
-
-  utter_confirm:
-    - text: Cho em biết rõ hashtag được không ạ (Chỉ nhập từ khóa) ?
-    - text: Hashtag anh(chị) muốn tìm kiếm là gì (Chỉ nhập từ khóa)
+  utter_show_ability:
+    - text: Bot có thể trò chuyện với bạn và giúp bạn theo dõi xu hướng trên mạng xã hội.
 
   utter_noworries:
-    - text: Em luôn sẵn lòng giúp đỡ anh(chị) bất cứ lúc nào ạ ^^
+    - text: Bot luôn sẵn lòng giúp đỡ bạn bất cứ lúc nào! ^^
 
-  utter_show_ability:
-    - text: Em có thể trò chuyện với anh(chị), có thể giúp anh(chị) theo dõi xu hướng trên mạng xã hội ạ
+  utter_happy:
+    - text: Hì hì, bạn khen quá lời rồi ạ!
 
-  utter_fallback:
-    - text:
-        Em xin lỗi, em chưa hiểu ý muốn của anh(chị) ạ. Anh chị có thể nói lại được
-        không ạ
+  utter_sorry:
+    - text: Bot xin lôĩ vì em chưa đủ thông minh ạ :(
+
+  utter_confirm:
+    - text: Cho bot biết rõ hashtag được không ạ (Chỉ nhập từ khóa)?
+    - text: Hashtag bạn muốn tìm kiếm là gì (Chỉ nhập từ khóa)
+    - text: Vui lòng cho bot biết từ khóa bạn muốn tìm kiếm (Chỉ nhập từ khóa)
 
   utter_iamabot:
-    - text: Tôi là TrendBot
+    - text: Mình là TrendBot
 
   utter_wait_a_minute:
     - text: Đợi xíu nhé!
@@ -79,12 +74,15 @@ actions:
   - action_select_platform
   - action_top_youtube_trending_by_category
   - action_top_tiktok_trending_by_category
+  - action_name
 
 entities:
   - hashtag
   - platform
   - youtube_category
   - tiktok_category
+  - name
+  - surname
 
 forms:
   platform_form:
@@ -125,3 +123,15 @@ slots:
     mappings:
       - type: from_entity
         entity: tiktok_category
+
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+
+  surname:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: surname

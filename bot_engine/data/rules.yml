@@ -4,6 +4,11 @@ rules:
   - rule: Say hi anytime the user says hi
     steps:
       - intent: greet
+      - action: action_name
+      - slot_was_set:
+          - name: Tu
+      - slot_was_set:
+          - surname: Dang
       - action: utter_greet
 
   - rule: Say goodbye anytime the user says goodbye

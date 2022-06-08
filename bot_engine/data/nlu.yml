@@ -83,6 +83,7 @@ nlu:
       - thank bot nhiều nha
       - thanh kìu
       - cảm ơn nhiều nha
+      - thankyou
 
   - intent: praise
     examples: |
@@ -93,8 +94,6 @@ nlu:
       - bot làm tốt lắm
       - ui giỏi thế
       - bot thông minh
-      - đẹp trai đấy
-      - Ênm đệnp léăm
       - tuyệt quá
       - sao bot giỏi vậy
       - bot thông mình quá ta
@@ -110,7 +109,7 @@ nlu:
       - wow giỏi ghê
       - wow bot giỏi quá
       - thật tuyệt
-      - sao bao thông minh thế
+      - sao bot thông minh thế
 
   - intent: decry
     examples: |

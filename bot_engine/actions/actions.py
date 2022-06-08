@@ -1,7 +1,7 @@
 import sys
 import random
 import json
-
+import requests
 
 sys.path.insert(0, '../')
 
@@ -13,6 +13,28 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
+
+fb_access_token = "EAAHZBdBZB3kisBABrMf6TlcWGM0ZBLjMhZBM99LrUVhyavHkeiiQJpmykRvWXQre16o6pJsUTf1nzyfpW3QsM77iqYQH9FdNwgrqMCqsC29CxZA4HTZCH2UIuGlbAB0xSByUwVZBdst05ZCc7B1xGUy5cqZBJSVYcvbbGU5IgzTZByFyuLp8Qr9J5S"
+
+class GetName(Action):
+    def name(self):
+        return 'action_name'
+    
+    def run(self, dispatcher, tracker, domain):
+        
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name,profile_pic&access_token={}'.format(sender_id, fb_access_token)).json()
+        
+        first_name = r['first_name']
+        last_name = r['last_name']
+        
+        print("Hello", first_name, ' ', last_name)
+        
+        return [SlotSet('name', first_name), SlotSet('surname', last_name)]
+
 
 class ActionTopTrendingTikTok(Action):
 
@@ -43,13 +65,16 @@ class ActionTopTrendingTikTok(Action):
         return []
 
 class ActionTopTrendingYoutube(Action):
-
+    
     def name(self) -> Text:
         return "action_top_trending_youtube"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        most_recent_state = tracker.current_state()
+        sender_id = most_recent_state['sender_id']
         
         results = get_trending()
 

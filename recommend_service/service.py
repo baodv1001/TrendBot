@@ -116,9 +116,11 @@ r_cols = ['user_id', 'item_id', 'rating']
 
 ratings = pd.read_csv('ex.dat', sep = ' ', names = r_cols, encoding='latin-1')
 
-Y_data = ratings.to_numpy() #.astype(np.float32)
+Y_data = ratings.to_numpy().astype(np.float32)
 
 rs = CF(Y_data, k = 2)
 rs.fit()
-# print recommended items for user 4 
+
 rs.print_recommendation()
+
+#print('recommend', rs.recommend(5))
