@@ -24,6 +24,8 @@ stories:
       - action: action_top_trending_youtube
       - intent: ask_for_trending_youtube_by_category
       - action: action_top_youtube_trending_by_category
+      - intent: ask_for_more_trending
+      - action: action_see_more_trending
 
   - story: ask trending by hashtag
     steps:

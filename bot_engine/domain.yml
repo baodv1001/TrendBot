@@ -18,6 +18,7 @@ intents:
   - ask_for_trending_youtube_by_category
   - ask_for_trending_tiktok
   - ask_for_trending_tiktok_by_category
+  - ask_for_more_trending
 
 responses:
   utter_default:
@@ -74,12 +75,13 @@ actions:
   - action_top_youtube_trending_by_category
   - action_top_tiktok_trending_by_category
   - action_name
+  - action_see_more_trending
 
 entities:
   - hashtag
   - platform
-  - youtube_category
-  - tiktok_category
+  - youtubeCategory
+  - tiktokCategory
   - name
   - surname
 
@@ -109,19 +111,19 @@ slots:
       - type: from_entity
         entity: platform
 
-  youtube_category:
+  youtubeCategory:
     type: text
     influence_conversation: true
     mappings:
       - type: from_entity
-        entity: youtube_category
+        entity: youtubeCategory
 
-  tiktok_category:
+  tiktokCategory:
     type: text
     influence_conversation: true
     mappings:
       - type: from_entity
-        entity: tiktok_category
+        entity: tiktokCategory
 
   name:
     type: text

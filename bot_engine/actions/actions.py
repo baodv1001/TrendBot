@@ -22,14 +22,19 @@ class GetName(Action):
     
     def run(self, dispatcher, tracker, domain):
         
-        most_recent_state = tracker.current_state()
+        ##Enable when using messeger
+        # most_recent_state = tracker.current_state()
         
-        sender_id = most_recent_state['sender_id']
+        # sender_id = most_recent_state['sender_id']
         
-        r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name,profile_pic&access_token={}'.format(sender_id, fb_access_token)).json()
+        # r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name,profile_pic&access_token={}'.format(sender_id, fb_access_token)).json()
         
-        first_name = r['first_name']
-        last_name = r['last_name']
+        # first_name = r['first_name'] 
+        # last_name = r['last_name'] 
+        
+        ##Default
+        first_name = 'Rasa'
+        last_name = 'Shell'
         
         print("GetName_Action - FirstName: {0} - LastName: {1}".format(first_name, last_name))
         
@@ -50,11 +55,11 @@ class ActionTopTrendingTikTok(Action):
         results = get_tiktok_trending()
         buttons = []
         buttons.append(
-                {"title": 'Từ khóa (hashtag)', "payload": '/ask_for_trending_tiktok_by_category{"tiktok_category":"hashtag"}'})
+                {"title": 'Từ khóa (hashtag)', "payload": '/ask_for_trending_tiktok_by_category{"tiktokCategory":"hashtag"}'})
         buttons.append(
-                {"title": 'Hiệu ứng (effect)', "payload": '/ask_for_trending_tiktok_by_category{"tiktok_category":"effect"}'})
+                {"title": 'Hiệu ứng (effect)', "payload": '/ask_for_trending_tiktok_by_category{"tiktokCategory":"effect"}'})
         buttons.append(
-                {"title": 'Âm nhạc (music)', "payload": '/ask_for_trending_tiktok_by_category{"tiktok_category":"music"}'})
+                {"title": 'Âm nhạc (music)', "payload": '/ask_for_trending_tiktok_by_category{"tiktokCategory":"music"}'})
 
         for category in results:
             dispatcher.utter_message(text='{0}: {1} - {2}'.format(category['desc'], category['name'], category['url']))
@@ -116,13 +121,13 @@ class ActionTrendingByTikTokCategory(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        tiktok_category = next(tracker.get_latest_entity_values("tiktok_category"),None)
+        tiktokCategory = next(tracker.get_latest_entity_values("tiktokCategory"),None)
         
-        print("TrendingByTiktokCategory_Action - Category: {0}".format(tiktok_category))
+        print("TrendingByTiktokCategory_Action - Category: {0}".format(tiktokCategory))
         
-        if tiktok_category:
-            dispatcher.utter_message(text='Những trend mới nhất theo {0} là :'.format(tiktok_category))
-            results = get_tiktok_list_trend_by_category(tiktok_category)
+        if tiktokCategory:
+            dispatcher.utter_message(text='Những trend mới nhất theo {0} là :'.format(tiktokCategory))
+            results = get_tiktok_list_trend_by_category(tiktokCategory)
             for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['desc'], result['url']))
                 dispatcher.utter_attachment(result['videos'][0]['url'])
@@ -140,13 +145,33 @@ class ActionTrendingByYoutubeCategory(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        youtube_category = next(tracker.get_latest_entity_values("youtube_category"),None)
+        youtubeCategory = next(tracker.get_latest_entity_values("youtubeCategory"),None)
         
-        print("TrendingByYoutubeCategory_Action - Category: {0}".format(youtube_category))
+        print("TrendingByYoutubeCategory_Action - Category: {0}".format(youtubeCategory))
         
-        results = get_trending_by_category(youtube_category)
+        results = get_trending_by_category(youtubeCategory)
 
         for result in results:    
             dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
             
+        return [SlotSet('youtubeCategory', youtubeCategory), SlotSet('platform', 'youtube')]
+    
+class ActionSeeMore(Action):
+    
+    def name(self) -> Text:
+        return "action_see_more_trending"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        platform = tracker.get_slot("platform")
+        hashtag = tracker.get_slot("hashtag")
+        youtubeCategory = tracker.get_slot("youtubeCategory")
+        tiktokCategory = tracker.get_slot("tiktokCategory")
+        
+        print("SeeMore_Action - Platform: {0} - Hashtag: {1} - Youtube_Cat: {2} - Tiktok_Cat: {3}".format(platform, hashtag, youtubeCategory, tiktokCategory))
+        
+        dispatcher.utter_message(text="more and more")
+        
         return []

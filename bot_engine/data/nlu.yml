@@ -237,42 +237,52 @@ nlu:
 
   - intent: ask_for_trending_tiktok_by_category
     examples: |
-      - xem phân loại [hashtag](tiktok_category) trên tiktok
-      - xem phân loại [hashtag](tiktok_category) 
-      - có gì mới trong phân loại [từ khóa](tiktok_category)
-      - có trend gì về [music](tiktok_category) không
-      - lâu quá chưa xem tredn về [âm thanh](tiktok_category)
-      - cập nhật trend hot về [hiệu ứng](tiktok_category) đi
-      - có [effect](tiktok_category) gì hay ho không ta
-      - tìm [âm thanh](tiktok_category) mới nổi đi
-      - tìm [âm thanh](tiktok_category) mới nổi trên tiktok đi
-      - [hiệu ứng](tiktok_category) đang trend thế nhỉ
-      - [hiệu ứng](tiktok_category) đang trend trên tiktok thế nhỉ
-      - [từ khóa](tiktok_category) nào đang hot trong những ngày qua thế
-      - [Từ khóa](tiktok_category)
-      - [Music](tiktok_category)
-      - [Hashtag](tiktok_category)
-      - [Effect](tiktok_category)
-      - [Hiệu ứng](tiktok_category)
-      - [Âm thanh](tiktok_category)
-      - [Âm nhạc](tiktok_category)
+      - xem phân loại [hashtag](tiktokCategory) trên tiktok
+      - xem phân loại [hashtag](tiktokCategory) 
+      - có gì mới trong phân loại [từ khóa](tiktokCategory)
+      - có trend gì về [music](tiktokCategory) không
+      - lâu quá chưa xem tredn về [âm thanh](tiktokCategory)
+      - cập nhật trend hot về [hiệu ứng](tiktokCategory) đi
+      - có [effect](tiktokCategory) gì hay ho không ta
+      - tìm [âm thanh](tiktokCategory) mới nổi đi
+      - tìm [âm thanh](tiktokCategory) mới nổi trên tiktok đi
+      - [hiệu ứng](tiktokCategory) đang trend thế nhỉ
+      - [hiệu ứng](tiktokCategory) đang trend trên tiktok thế nhỉ
+      - [từ khóa](tiktokCategory) nào đang hot trong những ngày qua thế
+      - [Từ khóa](tiktokCategory)
+      - [Music](tiktokCategory)
+      - [Hashtag](tiktokCategory)
+      - [Effect](tiktokCategory)
+      - [Hiệu ứng](tiktokCategory)
+      - [Âm thanh](tiktokCategory)
+      - [Âm nhạc](tiktokCategory)
 
   - intent: ask_for_trending_youtube_by_category
     examples: |
-      - xem thể loại [gaming](youtube_category) có gì hay
-      - xem thể loại [gaming](youtube_category) trên youtube có gì hay
-      - có gì mới trong thể loại [music](youtube_category)
-      - hôm nay có gì trên [animation](youtube_category)
-      - lâu quá chưa xem tin trên [news](youtube_category)
-      - lâu quá chưa xem tin [news](youtube_category) trên youtube 
-      - cùng xem thông tin nóng trên thể loại [pets](youtube_category) nào
-      - cập nhật thông tin hot trên [politics](youtube_category) đi
-      - có gì hay ho trên [sports](youtube_category)
-      - tìm hiểu cái gì mới trên [education](youtube_category) nhỉ
-      - tìm hiểu cái gì mới trên [education](youtube_category) trên youtube đi
-      - cùng học hỏi cái mới trên [howto](youtube_category) nào
-      - thông tin mới trên thể loại [vehicles](youtube_category) đi
-      - thông tin mới trên youtube với thể loại [vehicles](youtube_category) đi
+      - xem thể loại [gaming](youtubeCategory) có gì hay
+      - xem thể loại [gaming](youtubeCategory) trên youtube có gì hay
+      - có gì mới trong thể loại [music](youtubeCategory)
+      - hôm nay có gì trên [animation](youtubeCategory)
+      - lâu quá chưa xem tin trên [news](youtubeCategory)
+      - lâu quá chưa xem tin [news](youtubeCategory) trên youtube 
+      - cùng xem thông tin nóng trên thể loại [pets](youtubeCategory) nào
+      - cập nhật thông tin hot trên [politics](youtubeCategory) đi
+      - có gì hay ho trên [sports](youtubeCategory)
+      - tìm hiểu cái gì mới trên [education](youtubeCategory) nhỉ
+      - tìm hiểu cái gì mới trên [education](youtubeCategory) trên youtube đi
+      - cùng học hỏi cái mới trên [howto](youtubeCategory) nào
+      - thông tin mới trên thể loại [vehicles](youtubeCategory) đi
+      - thông tin mới trên youtube với thể loại [vehicles](youtubeCategory) đi
+
+  - intent: ask_for_more_trending
+    examples: |
+      - xem thêm nữa đi
+      - một vài trend nữa nhé
+      - có gì nữa không
+      - thêm một vài cái đi
+      - xem thêm nữa đi nè
+      - một vài cái nữa đi
+      - xem thêm trend đi
 
   - lookup: hashtag
     examples: |
@@ -374,7 +384,7 @@ nlu:
       - tiktok
       - twitter
 
-  - lookup: youtube_category
+  - lookup: youtubeCategory
     examples: |
       - film      
       - animation      

@@ -82,6 +82,11 @@ rules:
           - requested_slot: null
       - action: action_trending_by_hashtag
 
+  - rule: Reply see more trending
+    steps:
+      - intent: ask_for_more_trending
+      - action: action_see_more_trending
+
   # - rule: Reply trending tiktok
   #   steps:
   #     - intent: ask_for_trending
