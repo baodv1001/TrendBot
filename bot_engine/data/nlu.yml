@@ -180,7 +180,6 @@ nlu:
       - [cooking](hashtag)
       - [lienquan](hashtag)
       - [artist](hashtag)
-      - [music](hashtag)
       - [love](hashtag)
 
   - intent: ask_for_trending_tiktok
@@ -307,7 +306,6 @@ nlu:
       - comedy
       - featureme
       - repost
-      - music
       - new
       - workout
       - artist

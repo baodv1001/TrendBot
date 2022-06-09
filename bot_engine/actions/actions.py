@@ -107,7 +107,7 @@ class ActionTrendingByHashTag(Action):
         result = get_trending_by_hashtag(platform, hashtag)
         
         for video in result:
-            dispatcher.utter_message(text=video['title'], image=video['cover'])
+            dispatcher.utter_message(text=video['title'], attachment=video['play'])
 
         return []
 
@@ -126,7 +126,7 @@ class ActionTrendingByTikTokCategory(Action):
         print("TrendingByTiktokCategory_Action - Category: {0}".format(tiktokCategory))
         
         if tiktokCategory:
-            dispatcher.utter_message(text='Những trend mới nhất theo {0} là :'.format(tiktokCategory))
+            dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))
             results = get_tiktok_list_trend_by_category(tiktokCategory)
             for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['desc'], result['url']))
@@ -172,6 +172,23 @@ class ActionSeeMore(Action):
         
         print("SeeMore_Action - Platform: {0} - Hashtag: {1} - Youtube_Cat: {2} - Tiktok_Cat: {3}".format(platform, hashtag, youtubeCategory, tiktokCategory))
         
-        dispatcher.utter_message(text="more and more")
+        if platform and hashtag:
+            result = get_trending_by_hashtag(platform, hashtag)
+        
+            for video in result:
+                dispatcher.utter_message(text=video['title'], attachment=video['play'])
+        
+        if youtubeCategory:
+            results = get_trending_by_category(youtubeCategory)
+
+            for result in results:    
+                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+
+        if tiktokCategory:
+            dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))
+            results = get_tiktok_list_trend_by_category(tiktokCategory)
+            for result in results:    
+                dispatcher.utter_message(text='{0} - {1}'.format(result['desc'], result['url']))
+                dispatcher.utter_attachment(result['videos'][0]['url'])
         
         return []

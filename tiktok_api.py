@@ -3,7 +3,7 @@ import json
 import numpy as np
 from dotenv import load_dotenv
 import os
-
+import random
 from sqlalchemy import null
 
 load_dotenv()
@@ -125,9 +125,9 @@ def get_tiktok_trending_by_hashtag(hashtag):
  
 	challenge = data[0]
  
-	res_data = get_hashtag_video_by_id(challenge['id'])
+	videos = get_hashtag_video_by_id(challenge['id'])
  
-	videos = res_data['videos']
+	# videos = res_data['videos']
 	
 	return convert_data(videos)
 
@@ -147,8 +147,12 @@ def get_hashtag_video_by_id(id):
 	res = json.loads(response.text)
  
 	data = res['data']
+
+	jsonFile = open("data/hashtag.json", "w")
+	jsonFile.write(json.dumps(res))
+	jsonFile.close()
  
-	return data;
+	return random.choices(data['videos'], k=3);
 
 def convert_data(data):
 	result = []
