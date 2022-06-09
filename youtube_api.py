@@ -67,7 +67,7 @@ def get_youtube_trending(categoryName = None):
     return data
 
 def get_youtube_trending_by_hashtag(hashtag):
-    print ('Implementing: ' + hashtag)
+    print ('Youtube_API - Hashtag: {0}'.format(hashtag))
 
 def get_category_Id (categoryName):
     switcher = {
@@ -96,5 +96,3 @@ def get_category_Id (categoryName):
     }
     
     return switcher.get(categoryName,None)
-
-print(get_youtube_trending('music'))

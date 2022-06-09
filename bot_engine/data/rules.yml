@@ -4,6 +4,11 @@ rules:
   - rule: Say hi anytime the user says hi
     steps:
       - intent: greet
+      - action: action_name
+      - slot_was_set:
+          - name: Tu
+      - slot_was_set:
+          - surname: Dang
       - action: utter_greet
 
   - rule: Say goodbye anytime the user says goodbye
@@ -76,6 +81,11 @@ rules:
       - slot_was_set:
           - requested_slot: null
       - action: action_trending_by_hashtag
+
+  - rule: Reply see more trending
+    steps:
+      - intent: ask_for_more_trending
+      - action: action_see_more_trending
 
   # - rule: Reply trending tiktok
   #   steps:

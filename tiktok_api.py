@@ -77,7 +77,6 @@ def get_tiktok_trending():
 	res = json.loads(response.text)
 
 	categories = res['category_list']
-	print(categories)
 
 	res = convert_category(categories)
 
@@ -174,13 +173,10 @@ def convert_data(data):
 
 def get_video_by_category(category):
 	if category['type']==0:
-		print('{0}: {1}'.format(category['desc'], category['name']))
 		return get_video_by_challenge(category['id'])
 	elif category['type']==1:
-		print('{0}: {1}'.format(category['desc'], category['name']))
 		return get_video_by_music(category['id'])
 	elif category['type']==3:
-		print('{0}: {1}'.format(category['desc'], category['name']))
 		return get_video_by_effect(category['id'])
 	
 
