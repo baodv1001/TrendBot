@@ -81,10 +81,9 @@ class ActionTopTrendingYoutube(Action):
         
         most_recent_state = tracker.current_state()
         
-        #implementing
         sender_id = most_recent_state['sender_id']
         
-        results = get_trending()
+        results = get_trending(sender_id)
 
         for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
@@ -149,7 +148,11 @@ class ActionTrendingByYoutubeCategory(Action):
         
         print("TrendingByYoutubeCategory_Action - Category: {0}".format(youtubeCategory))
         
-        results = get_trending_by_category(youtubeCategory)
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        results = get_trending_by_category(youtubeCategory, sender_id)
 
         for result in results:    
             dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))

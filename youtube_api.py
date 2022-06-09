@@ -2,6 +2,10 @@ import os, requests, sys, time, json
 from unicodedata import category
 from dotenv import load_dotenv
 import googleapiclient.discovery
+
+from recommend_service.item import add_new_item
+from recommend_service.service import get_youtube_recommend_video
+from recommend_service.user import add_new_user
 load_dotenv()
 
 COUNTRY_CODE = "VN"
@@ -21,7 +25,7 @@ def api_request(categoryId = None):
     request = youtube.videos().list(
         part = "snippet,contentDetails,statistics",
         chart = "mostPopular",
-        maxResults = 3,
+        maxResults = 10,
         regionCode = COUNTRY_CODE,
         videoCategoryId = categoryId
     )
@@ -55,16 +59,29 @@ def get_videos(items):
     return lines
 
 
-def get_youtube_trending(categoryName = None):  
-    categoryId = get_category_Id(categoryName)
+def get_youtube_trending(userId, categoryName = None):
+    categoryId = None
+    if categoryName != None:
+        categoryId = get_category_Id(categoryName)
 
     video_data_page = api_request(categoryId)
     
     items = video_data_page.get("items", [])
     
-    data = get_videos(items)
+    datas = get_videos(items)
     
-    return data
+    for data in datas:
+        add_new_item(data['id'])
+    add_new_user(userId)
+    
+    jsonFile = open("bot_engine\data\data_youtube.json", "w")
+    jsonFile.write(json.dumps(datas))
+    jsonFile.close()
+    
+    return datas
+
+get_youtube_trending(1)
+print(get_youtube_recommend_video(1))
 
 def get_youtube_trending_by_hashtag(hashtag):
     print ('Youtube_API - Hashtag: {0}'.format(hashtag))

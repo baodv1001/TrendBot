@@ -134,3 +134,6 @@ dmypy.json
 *.gz
 bot_engine/data/data.json
 bot_engine/data/hashtag.json
+recommend_service/main_item.dat
+recommend_service/main_user.dat
+bot_engine/data/data_youtube.json
