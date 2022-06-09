@@ -32,8 +32,15 @@ stories:
       - intent: ask_for_trending_by_hashtag
         entities:
           - platform: tiktok
+      - action: platform_form
+      - active_loop: platform_form
+      - slot_was_set:
+          - requested_slot: platform
       - slot_was_set:
           - platform: tiktok
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
       - action: utter_confirm
       - intent: confirm_hashtag
       - action: hashtag_form

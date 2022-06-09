@@ -100,9 +100,10 @@ slots:
     mappings:
       - type: from_text
         intent: confirm_hashtag
-        conditions:
-          - active_loop: hashtag_form
-            requested_slot: hashtag
+        not_intent: ask_for_trending_tiktok_by_category
+        # conditions:
+        #   - active_loop: hashtag_form
+        #     requested_slot: hashtag
 
   platform:
     type: text

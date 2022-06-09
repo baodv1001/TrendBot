@@ -64,6 +64,17 @@ rules:
   - rule: Find trending by hashtag
     steps:
       - intent: ask_for_trending_by_hashtag
+      - action: platform_form
+      - active_loop: platform_form
+
+  - rule: Ask for hashtag
+    condition:
+      - active_loop: platform_form
+    steps:
+      - action: platform_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
       - action: utter_confirm
 
   - rule: Confirm hashtag
