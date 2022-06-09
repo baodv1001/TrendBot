@@ -66,7 +66,7 @@ class ActionTopTrendingTikTok(Action):
         
         dispatcher.utter_button_message('Hãy chọn một trong ba loại trend sau:', buttons)
             
-        return []
+        return [SlotSet('platform', 'tiktok')]
 
 class ActionTopTrendingYoutube(Action):
     
@@ -88,7 +88,7 @@ class ActionTopTrendingYoutube(Action):
 
         for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-        return []
+        return [SlotSet('platform', 'youtube')]
 
 class ActionTrendingByHashTag(Action):
 
@@ -109,7 +109,7 @@ class ActionTrendingByHashTag(Action):
         for video in result:
             dispatcher.utter_message(text=video['title'], attachment=video['play'])
 
-        return []
+        return [SlotSet('platform', 'tiktok')]
 
 class ActionTrendingByTikTokCategory(Action):
 
@@ -134,7 +134,7 @@ class ActionTrendingByTikTokCategory(Action):
         else:
             dispatcher.utter_message(text="Em chưa hiểu thể loại anh/chị muốn chọn, vui lòng chọn lại ạ!")
             
-        return []
+        return [SlotSet('platform', 'tiktok')]
 
 class ActionTrendingByYoutubeCategory(Action):
 
@@ -177,12 +177,16 @@ class ActionSeeMore(Action):
         
             for video in result:
                 dispatcher.utter_message(text=video['title'], attachment=video['play'])
+            
+            return []
         
         if youtubeCategory:
             results = get_trending_by_category(youtubeCategory)
 
             for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                
+            return []
 
         if tiktokCategory:
             dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))
