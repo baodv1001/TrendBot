@@ -133,3 +133,4 @@ dmypy.json
 *.bin
 *.gz
 bot_engine/data/data.json
+bot_engine/data/hashtag.json

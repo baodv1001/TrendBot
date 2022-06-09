@@ -90,9 +90,8 @@ def get_category_Id (categoryName):
             'politics' : 25,
             'howto' : 26,
             'style' : 26,
-            'education' : 27,
             'science' : 28,
             'technology' : 28,
     }
     
-    return switcher.get(categoryName,None)
+    return switcher.get(categoryName, 1)

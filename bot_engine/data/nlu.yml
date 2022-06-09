@@ -267,8 +267,6 @@ nlu:
       - cùng xem thông tin nóng trên thể loại [pets](youtubeCategory) nào
       - cập nhật thông tin hot trên [politics](youtubeCategory) đi
       - có gì hay ho trên [sports](youtubeCategory)
-      - tìm hiểu cái gì mới trên [education](youtubeCategory) nhỉ
-      - tìm hiểu cái gì mới trên [education](youtubeCategory) trên youtube đi
       - cùng học hỏi cái mới trên [howto](youtubeCategory) nào
       - thông tin mới trên thể loại [vehicles](youtubeCategory) đi
       - thông tin mới trên youtube với thể loại [vehicles](youtubeCategory) đi
@@ -403,6 +401,5 @@ nlu:
       - politics
       - howto
       - style
-      - education
       - science
       - technology
