@@ -139,3 +139,4 @@ recommend_service/main_user.dat
 bot_engine/data/data_youtube.json
 recommend_service/vote.dat
 *.dat
+recommend_service/user_watch/4.dat

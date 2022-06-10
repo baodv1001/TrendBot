@@ -3,8 +3,9 @@ import random
 import json
 import requests
 
-
 sys.path.insert(0, '../')
+
+from recommend_service.user import user_vote
 
 from typing import Any, Text, Dict, List
 from trending_api import get_more_youtube_trending, get_trending, get_trending_by_category, get_trending_by_hashtag 
@@ -216,9 +217,17 @@ class ActionTrendIsBad(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(text='Xin lỗi bạn, mình sẽ cố gắng hơn')
         
+        print("TrendIsBad_Action")
+        
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([0, 1]))
+        
         return []
 
-class ActionTrendIsBad(Action):
+class ActionTrendIsNormal(Action):
     
     def name(self) -> Text:
         return "action_trend_is_normal"
@@ -228,9 +237,17 @@ class ActionTrendIsBad(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(text='Cảm ơn bạn, chúc bạn một ngày tốt lành')
         
+        print("TrendIsNormal_Action")
+        
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([2, 3]))
+        
         return []
 
-class ActionTrendIsBad(Action):
+class ActionTrendIsGood(Action):
     
     def name(self) -> Text:
         return "action_trend_is_good"
@@ -239,5 +256,13 @@ class ActionTrendIsBad(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(text='Cảm ơn bạn nhiều, bot sẽ cải thiện và giúp đỡ bạn nhiều hơn')
+        
+        print("TrendIsGood_Action")
+                
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([4, 5]))
         
         return []

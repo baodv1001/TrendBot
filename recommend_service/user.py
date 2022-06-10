@@ -1,4 +1,5 @@
 from recommend_service.item import get_item_num
+import os
 
 
 def add_new_user(userId):
@@ -58,18 +59,56 @@ def is_watched(userNum, itemNum):
     finally:
         return False
     
-def user_voted(userId, itemId, rate):
-    itemNum=get_item_num(itemId)
+
+def user_vote(userID, rate):
+    userNum=get_user_num(userID)
     
-    try:
-        name = "../recommend_service/vote.dat"
-        
-        f=open(name,"a+")
-        
-        result=str(itemNum)+" "+str(rate)+"\n"
-        
-        f.write(result)
-        
-        print(result)
-    finally:
-        f.close()
+    flag = 0
+    
+    voteFile = "../recommend_service/vote.dat"
+    userWatchFile = "../recommend_service/user_watch/{0}.dat".format(userNum)
+    
+    if not os.path.exists(userWatchFile):
+        return
+    
+    fuW = open(userWatchFile,"r")
+    
+    userWatcheds = fuW.readlines()
+    
+    for itemNum in userWatcheds:
+        try:
+            f = open(voteFile,"r")
+            
+            text = f.readlines()
+            
+            for t in text:
+                a = t.split()
+                
+                if (str(a[0]) == userNum and str(a[1]) == itemNum.rstrip() and str(a[0]) != '\n'):
+                    
+                    b = text.index("{0} {1} {2}\n".format(a[0], a[1], a[2]))
+                    
+                    text[b] = "{0} {1} {2}.\n".format(str(userNum), itemNum.rstrip(), str(rate))
+                    
+                    flag = 1
+                    
+                    break
+        finally:
+            f.close()
+            
+        if flag == 0:
+            try:
+                f=open(voteFile,"a+")
+                
+                result = "{0} {1} {2}.\n".format(str(userNum), itemNum.rstrip(), str(rate))
+                
+                f.write(result)
+            finally:
+                f.close()
+        else:
+            try:
+                f=open(voteFile,"w")
+                
+                f.writelines(text)
+            finally:
+                f.close()
