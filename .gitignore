@@ -137,3 +137,4 @@ bot_engine/data/hashtag.json
 recommend_service/main_item.dat
 recommend_service/main_user.dat
 bot_engine/data/data_youtube.json
+recommend_service/vote.dat

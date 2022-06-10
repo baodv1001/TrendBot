@@ -1,8 +1,11 @@
+import random
 import pandas as pd 
 import numpy as np
 import json
 from sklearn.metrics.pairwise import cosine_similarity
-from scipy import sparse 
+from scipy import sparse
+from recommend_service.item import get_item_num
+from recommend_service.user import get_user_num 
 class CF(object):
     """docstring for CF"""
     def __init__(self, Y_data, k, dist_func = cosine_similarity):
@@ -91,7 +94,7 @@ class CF(object):
         have not been rated by u yet. 
         """
         # Find all rows corresponding to user u
-        ids = np.where(Y_data[:, 0] == u)[0]
+        ids = np.where(self.Y_data[:, 0] == u)[0]
         items_rated_by_u = self.Y_data[ids, 1].tolist() 
         recommended_items = []
         for i in range(self.n_items):
@@ -112,7 +115,7 @@ class CF(object):
             print ('    for user ', u, ': ', recommended_items)
 
 
-# data file 
+ 
 # r_cols = ['user_id', 'item_id', 'rating']
 
 # ratings = pd.read_csv('ex.dat', sep = ' ', names = r_cols, encoding='latin-1')
@@ -124,13 +127,47 @@ class CF(object):
 
 # rs.print_recommendation()
 
-#print('recommend', rs.recommend(5))
+# print('recommend', rs.recommend(5))
 
 
 def get_youtube_recommend_video(userId):
+    userNum = get_user_num(userId)
+    
+    r_cols = ['user_id', 'item_id', 'rating']
+    
+    ratings = pd.read_csv('recommend_service/vote.dat', sep = ' ', names = r_cols, encoding='latin-1')
+    
+    Y_data = ratings.to_numpy().astype(np.float32)
+    
+    rs = CF(Y_data, k = 2)
+    
+    rs.fit()
+    
+    recommendItems = rs.recommend(int(userNum))
+    
+    print('Recommend_Service - UserId: {0} - Items: {1}'.format(userId, recommendItems))
+    
     f = open('bot_engine\data\data_youtube.json')
+    
     datas = json.load(f)
     
-    return datas
+    results = []
+    
+    for item in datas:
+        itemNum = get_item_num(item['id'])
+        
+        if itemNum in recommendItems:
+            results.append(item)
+            
+    recommendResultLen = len(results) 
+    
+    while recommendResultLen < 3:
+        randomResult = random.choice(datas)
+        
+        if(randomResult not in results):
+            results.append(randomResult)
+        recommendResultLen += 1
+    
+    return results
     
     
