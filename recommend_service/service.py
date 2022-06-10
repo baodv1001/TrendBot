@@ -104,38 +104,13 @@ class CF(object):
                     recommended_items.append(i)
         
         return recommended_items 
-
-    def print_recommendation(self):
-        """
-        print all items which should be recommended for each user 
-        """
-        print ('Recommendation: ')
-        for u in range(self.n_users):
-            recommended_items = self.recommend(u)
-            print ('    for user ', u, ': ', recommended_items)
-
-
- 
-# r_cols = ['user_id', 'item_id', 'rating']
-
-# ratings = pd.read_csv('ex.dat', sep = ' ', names = r_cols, encoding='latin-1')
-
-# Y_data = ratings.to_numpy().astype(np.float32)
-
-# rs = CF(Y_data, k = 2)
-# rs.fit()
-
-# rs.print_recommendation()
-
-# print('recommend', rs.recommend(5))
-
-
+    
 def get_youtube_recommend_video(userId):
     userNum = get_user_num(userId)
     
     r_cols = ['user_id', 'item_id', 'rating']
     
-    ratings = pd.read_csv('recommend_service/vote.dat', sep = ' ', names = r_cols, encoding='latin-1')
+    ratings = pd.read_csv('../recommend_service/vote.dat', sep = ' ', names = r_cols, encoding='latin-1')
     
     Y_data = ratings.to_numpy().astype(np.float32)
     
@@ -147,7 +122,7 @@ def get_youtube_recommend_video(userId):
     
     print('Recommend_Service - UserId: {0} - Items: {1}'.format(userId, recommendItems))
     
-    f = open('bot_engine\data\data_youtube.json')
+    f = open('data/data_youtube.json')
     
     datas = json.load(f)
     
@@ -156,17 +131,14 @@ def get_youtube_recommend_video(userId):
     for item in datas:
         itemNum = get_item_num(item['id'])
         
-        if itemNum in recommendItems:
+        if itemNum in recommendItems and len(results) < 3:
             results.append(item)
-            
-    recommendResultLen = len(results) 
     
-    while recommendResultLen < 3:
+    while len(results)  <= 2:
         randomResult = random.choice(datas)
         
         if(randomResult not in results):
             results.append(randomResult)
-        recommendResultLen += 1
     
     return results
     

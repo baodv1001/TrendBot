@@ -74,14 +74,13 @@ def get_youtube_trending(userId, categoryName = None):
         add_new_item(data['id'])
     add_new_user(userId)
     
-    jsonFile = open("bot_engine\data\data_youtube.json", "w")
+    jsonFile = open("data\data_youtube.json", "w")
     jsonFile.write(json.dumps(datas))
     jsonFile.close()
     
-    return datas
-
-get_youtube_trending(1)
-print(get_youtube_recommend_video(1))
+    recommendDatas = get_youtube_recommend_video(userId)
+    
+    return recommendDatas
 
 def get_youtube_trending_by_hashtag(hashtag):
     print ('Youtube_API - Hashtag: {0}'.format(hashtag))

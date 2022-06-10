@@ -3,13 +3,13 @@ def add_new_item(itemId):
         return
     
     try:
-        f=open("recommend_service\main_item.dat","r")
+        f=open("../recommend_service/main_item.dat","r")
         text=f.readlines()
         size=len(text)
     finally:
         f.close()
     try:
-        f=open("recommend_service\main_item.dat","a+")
+        f=open("../recommend_service/main_item.dat","a+")
         result=str(size+1)+" "+itemId+"\n"
         f.write(result)
     finally:
@@ -17,7 +17,7 @@ def add_new_item(itemId):
 
 def get_item_num(itemId):
     try:
-        f=open("recommend_service\main_item.dat","r")
+        f=open("../recommend_service/main_item.dat","r")
         text=f.readlines()
         for t in text:
             a=t.split()

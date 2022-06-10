@@ -87,7 +87,7 @@ class ActionTopTrendingYoutube(Action):
 
         for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-        return [SlotSet('platform', 'youtube')]
+        return [SlotSet('platform', 'youtube'), SlotSet('youtubeCategory', None), SlotSet('hashtag', None)]
 
 class ActionTrendingByHashTag(Action):
 
@@ -157,7 +157,7 @@ class ActionTrendingByYoutubeCategory(Action):
         for result in results:    
             dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
             
-        return [SlotSet('youtubeCategory', youtubeCategory), SlotSet('platform', 'youtube')]
+        return [SlotSet('youtubeCategory', youtubeCategory), SlotSet('platform', 'youtube'), SlotSet('hashtag', None)]
     
 class ActionSeeMore(Action):
     
@@ -175,6 +175,10 @@ class ActionSeeMore(Action):
         
         print("SeeMore_Action - Platform: {0} - Hashtag: {1} - Youtube_Cat: {2} - Tiktok_Cat: {3}".format(platform, hashtag, youtubeCategory, tiktokCategory))
         
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
         if platform and hashtag:
             result = get_trending_by_hashtag(platform, hashtag)
         
@@ -183,13 +187,21 @@ class ActionSeeMore(Action):
             
             return []
         
-        if youtubeCategory:
-            results = get_trending_by_category(youtubeCategory)
+        if platform == 'youtube':
+            if youtubeCategory!= None:
+                results = get_trending_by_category(youtubeCategory, sender_id)
 
-            for result in results:    
-                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                for result in results:    
+                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                    
+                return []
+            else: 
+                results = get_trending(sender_id)
                 
-            return []
+                for result in results:    
+                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                    
+                return []
 
         if tiktokCategory:
             dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))

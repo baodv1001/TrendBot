@@ -3,13 +3,13 @@ def add_new_user(userId):
         return
     
     try:
-        f=open("recommend_service\main_user.dat","r")
+        f=open("../recommend_service/main_user.dat","r")
         text=f.readlines()
         size=len(text)
     finally:
         f.close()
     try:
-        f=open("recommend_service\main_user.dat","a+")
+        f=open("../recommend_service/main_user.dat","a+")
         text=f.readline()
         result=str(size+1)+" "+str(userId)+" \n"
         f.write(result)
@@ -18,7 +18,7 @@ def add_new_user(userId):
         
 def get_user_num(userId):
     try:
-        f=open("recommend_service\main_user.dat","r")
+        f=open("../recommend_service/main_user.dat","r")
         text=f.readlines()
         for t in text:
             a=t.split()
