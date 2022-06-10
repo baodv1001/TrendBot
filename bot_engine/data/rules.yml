@@ -98,6 +98,21 @@ rules:
       - intent: ask_for_more_trending
       - action: action_see_more_trending
 
+  - rule: Reply trend is bad
+    steps:
+      - intent: trend_is_bad
+      - action: action_trend_is_bad
+
+  - rule: Reply trend is normal
+    steps:
+      - intent: trend_is_normal
+      - action: action_trend_is_normal
+
+  - rule: Reply trend is good
+    steps:
+      - intent: trend_is_good
+      - action: action_trend_is_good
+
   # - rule: Reply trending tiktok
   #   steps:
   #     - intent: ask_for_trending

@@ -205,3 +205,39 @@ class ActionSeeMore(Action):
                 dispatcher.utter_attachment(result['videos'][0]['url'])
         
         return []
+    
+class ActionTrendIsBad(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_bad"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Xin lỗi bạn, mình sẽ cố gắng hơn')
+        
+        return []
+
+class ActionTrendIsBad(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_normal"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Cảm ơn bạn, chúc bạn một ngày tốt lành')
+        
+        return []
+
+class ActionTrendIsBad(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_good"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Cảm ơn bạn nhiều, bot sẽ cải thiện và giúp đỡ bạn nhiều hơn')
+        
+        return []

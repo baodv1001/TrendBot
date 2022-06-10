@@ -1,3 +1,6 @@
+from recommend_service.item import get_item_num
+
+
 def add_new_user(userId):
     if get_user_num (userId) != 0:
         return
@@ -54,3 +57,19 @@ def is_watched(userNum, itemNum):
         return False
     finally:
         return False
+    
+def user_voted(userId, itemId, rate):
+    itemNum=get_item_num(itemId)
+    
+    try:
+        name = "../recommend_service/vote.dat"
+        
+        f=open(name,"a+")
+        
+        result=str(itemNum)+" "+str(rate)+"\n"
+        
+        f.write(result)
+        
+        print(result)
+    finally:
+        f.close()
