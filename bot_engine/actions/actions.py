@@ -103,14 +103,22 @@ class ActionTrendingByHashTag(Action):
         platform = tracker.get_slot("platform")
         hashtag = tracker.get_slot("hashtag")
 
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+
         print("TrendingByHashTag_Action - Platform: {0} - Hashtag: {1}".format(platform, hashtag))
         
-        result = get_trending_by_hashtag(platform, hashtag)
+        result = get_trending_by_hashtag(platform, hashtag, sender_id)
+        
+        print(result)
         
         for video in result:
-            dispatcher.utter_message(text=video['title'], attachment=video['play'])
-
-        return [SlotSet('platform', 'tiktok')]
+            if(platform == 'tiktok'):
+                dispatcher.utter_message(text=video['title'], attachment=video['play'])
+            else:
+                dispatcher.utter_message(text='{0} - {1}'.format(video['title'], video['image']))
+        return []
 
 class ActionTrendingByTikTokCategory(Action):
 
@@ -181,7 +189,7 @@ class ActionSeeMore(Action):
         
         sender_id = most_recent_state['sender_id']
         
-        if platform and hashtag:
+        if platform == 'tiktok' and hashtag:
             result = get_trending_by_hashtag(platform, hashtag)
         
             for video in result:
