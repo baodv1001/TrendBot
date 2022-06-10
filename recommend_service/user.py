@@ -28,5 +28,29 @@ def get_user_num(userId):
     finally:
         f.close()
 
-def add(userId, itemId, rate):
-    return 1
+def user_watched(userNum, itemNum):
+    try:
+        userWatchFilePath = "../recommend_service/user_watch/{0}.dat".format(userNum)
+        
+        f=open(userWatchFilePath,"a+")
+        
+        result=str(itemNum) + "\n"
+        
+        f.write(result)
+    finally:
+        f.close()
+
+def is_watched(userNum, itemNum):
+    try:
+        userWatchFilePath = "../recommend_service/user_watch/{0}.dat".format(userNum)
+        
+        f=open(userWatchFilePath,"r")
+        
+        text=f.readlines()
+        
+        for t in text:
+            if str(itemNum) == str(t):
+                return True
+        return False
+    finally:
+        return False

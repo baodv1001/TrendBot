@@ -3,10 +3,11 @@ import random
 import json
 import requests
 
+
 sys.path.insert(0, '../')
 
 from typing import Any, Text, Dict, List
-from trending_api import get_trending, get_trending_by_category, get_trending_by_hashtag 
+from trending_api import get_more_youtube_trending, get_trending, get_trending_by_category, get_trending_by_hashtag 
 from tiktok_api import get_tiktok_list_trend_by_category, get_tiktok_trending
 
 from rasa_sdk import Action, Tracker, FormValidationAction
@@ -188,20 +189,13 @@ class ActionSeeMore(Action):
             return []
         
         if platform == 'youtube':
-            if youtubeCategory!= None:
-                results = get_trending_by_category(youtubeCategory, sender_id)
 
-                for result in results:    
-                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-                    
-                return []
-            else: 
-                results = get_trending(sender_id)
+            results = get_more_youtube_trending(sender_id)
+            
+            for result in results:    
+                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
                 
-                for result in results:    
-                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-                    
-                return []
+            return []
 
         if tiktokCategory:
             dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))

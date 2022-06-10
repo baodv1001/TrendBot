@@ -5,7 +5,7 @@ import googleapiclient.discovery
 
 from recommend_service.item import add_new_item
 from recommend_service.service import get_youtube_recommend_video
-from recommend_service.user import add_new_user
+from recommend_service.user import add_new_user, get_user_num
 load_dotenv()
 
 COUNTRY_CODE = "VN"
@@ -25,7 +25,7 @@ def api_request(categoryId = None):
     request = youtube.videos().list(
         part = "snippet,contentDetails,statistics",
         chart = "mostPopular",
-        maxResults = 10,
+        maxResults = 20,
         regionCode = COUNTRY_CODE,
         videoCategoryId = categoryId
     )
@@ -74,13 +74,23 @@ def get_youtube_trending(userId, categoryName = None):
         add_new_item(data['id'])
     add_new_user(userId)
     
-    jsonFile = open("data\data_youtube.json", "w")
+    jsonFile = open("data/data_youtube.json", "w")
     jsonFile.write(json.dumps(datas))
     jsonFile.close()
+    
+    userNum = get_user_num(userId)
+    
+    userWatchFilePath = "../recommend_service/user_watch/{0}.dat".format(userNum)
+    
+    if os.path.exists(userWatchFilePath):
+        os.remove(userWatchFilePath)
     
     recommendDatas = get_youtube_recommend_video(userId)
     
     return recommendDatas
+
+def get_more_trending(userId):
+    return get_youtube_recommend_video(userId)
 
 def get_youtube_trending_by_hashtag(hashtag):
     print ('Youtube_API - Hashtag: {0}'.format(hashtag))
