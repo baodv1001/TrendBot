@@ -103,8 +103,9 @@ def get_tiktok_list_trend_by_category(category):
 	for category in data:
 		if category['type'] == type:
 			videos = get_video_by_category(category)
-			category["videos"] = videos
-			res.append(category)
+			if len(videos) > 0:
+				category["videos"] = videos
+				res.append(category)
 	return res
 
 def get_tiktok_trending_by_hashtag(hashtag):
@@ -196,7 +197,10 @@ def get_video_by_music(id):
 
 	response = requests.request("GET", url, headers=headers, params=querystring)
 	res = json.loads(response.text)
-	videos = convert_video_from_aweme(res['aweme_list'])
+	if "aweme_list" in res:
+		videos = convert_video_from_aweme(res['aweme_list'])
+	else:
+		videos = []
 	return videos
 
 def get_video_by_challenge(id):
@@ -212,7 +216,12 @@ def get_video_by_challenge(id):
 	response = requests.request("GET", url, headers=headers, params=querystring)
 
 	res = json.loads(response.text)
-	videos = convert_video_from_aweme(res['aweme_list'])
+	
+	
+	if "aweme_list" in res:
+		videos = convert_video_from_aweme(res['aweme_list'])
+	else:
+		videos = []
 	return videos
 
 def get_video_by_effect(id):
@@ -228,7 +237,11 @@ def get_video_by_effect(id):
 	response = requests.request("GET", url, headers=headers, params=querystring)
 
 	res = json.loads(response.text)
-	videos = convert_video_from_aweme(res['aweme_list'])
+	if "aweme_list" in res:
+		videos = convert_video_from_aweme(res['aweme_list'])
+	else:
+		videos = []
+	
 	return videos
 
 def convert_video_from_aweme(awemes):
