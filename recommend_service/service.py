@@ -130,7 +130,7 @@ def get_youtube_recommend_video(userId):
     results = []
     
     for item in datas:
-        itemNum = get_item_num(item['id'])
+        itemNum = int(get_item_num(item['id']))
         
         if itemNum in recommendItems and len(results) < 3 and not is_watched(userNum, itemNum):
             results.append(item)

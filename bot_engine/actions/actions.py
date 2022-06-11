@@ -16,7 +16,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
-fb_access_token = "EAAHZBdBZB3kisBABrMf6TlcWGM0ZBLjMhZBM99LrUVhyavHkeiiQJpmykRvWXQre16o6pJsUTf1nzyfpW3QsM77iqYQH9FdNwgrqMCqsC29CxZA4HTZCH2UIuGlbAB0xSByUwVZBdst05ZCc7B1xGUy5cqZBJSVYcvbbGU5IgzTZByFyuLp8Qr9J5S"
+
 
 class GetName(Action):
     def name(self):
@@ -24,19 +24,19 @@ class GetName(Action):
     
     def run(self, dispatcher, tracker, domain):
         
-        ##Enable when using messeger
-        # most_recent_state = tracker.current_state()
+        #Enable when using messeger
+        most_recent_state = tracker.current_state()
         
-        # sender_id = most_recent_state['sender_id']
+        sender_id = most_recent_state['sender_id']
         
-        # r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name,profile_pic&access_token={}'.format(sender_id, fb_access_token)).json()
+        r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name,profile_pic&access_token={}'.format(sender_id, fb_access_token)).json()
         
-        # first_name = r['first_name'] 
-        # last_name = r['last_name'] 
+        first_name = r['first_name'] 
+        last_name = r['last_name'] 
         
-        ##Default
-        first_name = 'Rasa'
-        last_name = 'Shell'
+        #Default
+        #first_name = 'Rasa'
+        #last_name = 'Shell'
         
         print("GetName_Action - FirstName: {0} - LastName: {1}".format(first_name, last_name))
         
