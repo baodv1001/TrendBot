@@ -87,8 +87,10 @@ class ActionTopTrendingYoutube(Action):
         
         results = get_trending(sender_id)
 
-        for result in results:    
-                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+        for result in results:
+                videolink = 'https://www.youtube.com/watch?v={0}'.format(result['id'])    
+                dispatcher.utter_message(text='{0}'.format(result['title']))
+                dispatcher.utter_message(videolink)
         return [SlotSet('platform', 'youtube'), SlotSet('youtubeCategory', None), SlotSet('hashtag', None)]
 
 class ActionTrendingByHashTag(Action):
@@ -116,7 +118,9 @@ class ActionTrendingByHashTag(Action):
             if(platform == 'tiktok'):
                 dispatcher.utter_message(text=video['title'], attachment=video['play'])
             else:
-                dispatcher.utter_message(text='{0} - {1}'.format(video['title'], video['image']))
+                videolink = 'https://www.youtube.com/watch?v={0}'.format(video['id'])    
+                dispatcher.utter_message(text='{0}'.format(video['title']))
+                dispatcher.utter_message(videolink)
         return []
 
 class ActionTrendingByTikTokCategory(Action):
@@ -164,7 +168,9 @@ class ActionTrendingByYoutubeCategory(Action):
         results = get_trending_by_category(youtubeCategory, sender_id)
 
         for result in results:    
-            dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                videolink = 'https://www.youtube.com/watch?v={0}'.format(result['id'])    
+                dispatcher.utter_message(text='{0}'.format(result['title']))
+                dispatcher.utter_message(videolink)
             
         return [SlotSet('youtubeCategory', youtubeCategory), SlotSet('platform', 'youtube'), SlotSet('hashtag', None)]
     
@@ -201,7 +207,10 @@ class ActionSeeMore(Action):
             results = get_more_youtube_trending(sender_id)
             
             for result in results:    
-                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                #dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
+                videolink = 'https://www.youtube.com/watch?v={0}'.format(result['id'])    
+                dispatcher.utter_message(text='{0}'.format(result['title']))
+                dispatcher.utter_message(videolink)
                 
             return []
 

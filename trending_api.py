@@ -30,7 +30,8 @@ def convert_to_messages(results, platform = 'youtube'):
         for result in results:
             data = {
                 "title" : result["features"][0],
-                "image" : result["thumbnail_link"]
+                "image" : result["thumbnail_link"],
+                "id" : result["id"]
             }
             
             datas.append(data)

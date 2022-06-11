@@ -65,7 +65,7 @@ def convert_category(categories):
 def get_tiktok_trending():
 	url = "https://tokapi-mobile-version.p.rapidapi.com/v1/category"
 
-	querystring = {"count":"20","region":"VN"}
+	querystring = {"count":"15","region":"VN"}
 
 	headers = {
 		"X-RapidAPI-Host": api_host_2,
