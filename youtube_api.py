@@ -156,25 +156,54 @@ def get_youtube_trending_by_hashtag(userId, hashtag):
 def get_category_Id (categoryName):
     switcher = {
             'film' : 1,
+            
             'animation' : 1,
+            'chuyển động' : 1,
+            'nhịp sống' : 1,
+            
             'autos' : 2,
             'vehicles' : 2,
+            'phương tiện' : 2,
+            'xe cộ' : 2,
+            
             'music' : 10,
+            'âm nhạc' : 10,
+            'âm thanh' : 10,
+            
             'pets' : 15,
             'animals' : 15,
+            'thú cưng' : 15,
+            'thú nuôi' : 15,
+            'vật nuôi' : 15,
+            'động vật' : 15,
+            
             'sports' : 17,
+            'thể thao' : 17,
+            'sport' : 17,
+            
             'travel' : 19,
             'events' : 19,
+            
             'gaming' : 20,
+            'trò chơi' : 20,
+            'điện tử' : 20,
+            
             'people ' : 22,
             'blogs' : 22,
             'comedy' : 23,
             'entertainment' : 24,
+            
             'news' : 25,
+            'new' : 25,
+            'tin tức' : 25, 
+            'tin mới' : 25,
+            
             'politics' : 25,
+            'hình sự' : 25,
+            'thời sự' : 25,
+            
             'howto' : 26,
-            'style' : 26,
-            'science' : 28,
+            
             'technology' : 28,
     }
     

@@ -258,18 +258,37 @@ nlu:
 
   - intent: ask_for_trending_youtube_by_category
     examples: |
-      - xem thể loại [gaming](youtubeCategory) có gì hay
+      - xem thể loại [trò chơi](youtubeCategory) trên youtube có gì hay
       - xem thể loại [gaming](youtubeCategory) trên youtube có gì hay
-      - có gì mới trong thể loại [music](youtubeCategory)
-      - hôm nay có gì trên [animation](youtubeCategory)
+      - xem thể loại [điện tử](youtubeCategory) trên youtube có gì hay
+      - có gì mới trong thể loại [music](youtubeCategory) trên youtube
+      - có gì mới trong thể loại [âm nhạc](youtubeCategory) trên youtube
+      - có gì mới trong thể loại [âm thanh](youtubeCategory) trên youtube
+      - hôm nay có gì trên [animation](youtubeCategory) trên youtube
+      - hôm nay có gì trên [chuyển động](youtubeCategory) trên youtube
+      - hôm nay có gì trên [nhịp sống](youtubeCategory) trên youtube
       - lâu quá chưa xem tin trên [news](youtubeCategory)
-      - lâu quá chưa xem tin [news](youtubeCategory) trên youtube 
-      - cùng xem thông tin nóng trên thể loại [pets](youtubeCategory) nào
+      - lâu quá chưa xem tin trên [new](youtubeCategory) trên youtube 
+      - lâu quá chưa xem tin trên [tin tức](youtubeCategory) trên youtube 
+      - lâu quá chưa xem tin trên [tin mới](youtubeCategory) trên youtube 
+      - lâu quá chưa xem tin trên [hình sự](youtubeCategory) trên youtube 
+      - lâu quá chưa xem tin trên [thời sự](youtubeCategory) trên youtube 
       - cập nhật thông tin hot trên [politics](youtubeCategory) đi
-      - có gì hay ho trên [sports](youtubeCategory)
-      - cùng học hỏi cái mới trên [howto](youtubeCategory) nào
+      - cùng xem thông tin nóng trên thể loại [pets](youtubeCategory) nào
+      - cùng xem thông tin nóng trên thể loại [thú cưng](youtubeCategory) nào
+      - cùng xem thông tin nóng trên thể loại [động vật](youtubeCategory) nào
+      - cùng xem thông tin nóng trên thể loại [vật nuôi](youtubeCategory) nào
+      - cùng xem thông tin nóng trên thể loại [thú nuôi](youtubeCategory) nào
+      - có gì hay ho trên thể loại [sports](youtubeCategory)
+      - có gì hay ho trên thể loại [thể thao](youtubeCategory)
+      - có gì hay ho trên [sport](youtubeCategory)
+      - cùng học hỏi cái mới trên thể loại [howto](youtubeCategory) nào
+      - cùng học hỏi cái mới trên thể loại [kiến thức](youtubeCategory) nào
+      - cùng học hỏi cái mới trên thể loại [học hỏi](youtubeCategory) nào
       - thông tin mới trên thể loại [vehicles](youtubeCategory) đi
       - thông tin mới trên youtube với thể loại [vehicles](youtubeCategory) đi
+      - thông tin mới trên youtube với thể loại [phương tiện](youtubeCategory) đi
+      - thông tin mới trên youtube với thể loại [xe cộ](youtubeCategory) đi
 
   - intent: ask_for_more_trending
     examples: |
@@ -406,6 +425,16 @@ nlu:
 
   - lookup: youtubeCategory
     examples: |
+      - thể thao
+      - thời sự
+      - hình sự
+      - tin mới
+      - xe cộ
+      - phương tiện
+      - thú nuôi
+      - vật nuôi
+      - động vật
+      - thú cưng
       - film      
       - animation      
       - autos      
