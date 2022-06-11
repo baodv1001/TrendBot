@@ -111,6 +111,7 @@ class ActionTrendingByHashTag(Action):
         
         result = get_trending_by_hashtag(platform, hashtag, sender_id)
         
+        dispatcher.utter_message(text='Những video xu hướng theo từ khóa {0} trên nền tảng {1} là'.format(hashtag, platform))
         for video in result:
             if(platform == 'tiktok'):
                 dispatcher.utter_message(text=video['title'], attachment=video['play'])

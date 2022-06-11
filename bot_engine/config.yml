@@ -19,7 +19,7 @@ pipeline:
   - name: fasttext_featurizer.FastTextFeaturizer
     cache_path: fasttext/cc.vi.300.bin
   - name: DIETClassifier
-    epochs: 300
+    epochs: 100
     constrain_similarities: true
     model_confidence: softmax
   - name: EntitySynonymMapper
