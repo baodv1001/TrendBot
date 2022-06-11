@@ -44,21 +44,25 @@ rules:
   - rule: User ask about trending on tiktok and show category
     steps:
       - intent: ask_for_trending_tiktok
+      - action: utter_wait_a_minute
       - action: action_top_trending_tiktok
 
   - rule: User ask about trending on youtube and show category
     steps:
       - intent: ask_for_trending_youtube
+      - action: utter_wait_a_minute
       - action: action_top_trending_youtube
 
   - rule: Reply user tiktok trending by category selected
     steps:
       - intent: ask_for_trending_tiktok_by_category
+      - action: utter_wait_a_minute
       - action: action_top_tiktok_trending_by_category
 
   - rule: Reply user youtube trending by category selected
     steps:
       - intent: ask_for_trending_youtube_by_category
+      - action: utter_wait_a_minute
       - action: action_top_youtube_trending_by_category
 
   - rule: Find trending by hashtag
@@ -91,21 +95,26 @@ rules:
       - active_loop: null
       - slot_was_set:
           - requested_slot: null
+      - action: utter_wait_a_minute
       - action: action_trending_by_hashtag
 
   - rule: Reply see more trending
     steps:
       - intent: ask_for_more_trending
+      - action: utter_wait_a_minute
       - action: action_see_more_trending
 
-  # - rule: Reply trending tiktok
-  #   steps:
-  #     - intent: ask_for_trending
-  #     - action: utter_wait_a_minute
-  #     - action: action_top_trending
+  - rule: Reply trend is bad
+    steps:
+      - intent: trend_is_bad
+      - action: action_trend_is_bad
 
-  # - rule: Reply trending by category
-  #   steps:
-  #     - intent: ask_for_trending_youtube_by_category
-  #     - action: utter_wait_a_minute
-  #     - action: action_top_trending_by_category
+  - rule: Reply trend is normal
+    steps:
+      - intent: trend_is_normal
+      - action: action_trend_is_normal
+
+  - rule: Reply trend is good
+    steps:
+      - intent: trend_is_good
+      - action: action_trend_is_good

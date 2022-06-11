@@ -2,10 +2,11 @@ import random
 import pandas as pd 
 import numpy as np
 import json
+import os
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import sparse
 from recommend_service.item import get_item_num
-from recommend_service.user import get_user_num 
+from recommend_service.user import get_user_num, is_watched, user_watched 
 class CF(object):
     """docstring for CF"""
     def __init__(self, Y_data, k, dist_func = cosine_similarity):
@@ -131,14 +132,21 @@ def get_youtube_recommend_video(userId):
     for item in datas:
         itemNum = get_item_num(item['id'])
         
-        if itemNum in recommendItems and len(results) < 3:
+        if itemNum in recommendItems and len(results) < 3 and not is_watched(userNum, itemNum):
             results.append(item)
     
     while len(results)  <= 2:
         randomResult = random.choice(datas)
         
-        if(randomResult not in results):
+        itemNum = get_item_num(randomResult['id'])
+        
+        if(randomResult not in results and not is_watched(userNum, itemNum)):
             results.append(randomResult)
+            
+    for result in results:
+        itemNum = get_item_num(result['id'])
+        
+        user_watched(userNum, itemNum)
     
     return results
     

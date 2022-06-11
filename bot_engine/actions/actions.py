@@ -5,8 +5,10 @@ import requests
 
 sys.path.insert(0, '../')
 
+from recommend_service.user import user_vote
+
 from typing import Any, Text, Dict, List
-from trending_api import get_trending, get_trending_by_category, get_trending_by_hashtag 
+from trending_api import get_more_youtube_trending, get_trending, get_trending_by_category, get_trending_by_hashtag 
 from tiktok_api import get_tiktok_list_trend_by_category, get_tiktok_trending
 
 from rasa_sdk import Action, Tracker, FormValidationAction
@@ -101,14 +103,20 @@ class ActionTrendingByHashTag(Action):
         platform = tracker.get_slot("platform")
         hashtag = tracker.get_slot("hashtag")
 
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+
         print("TrendingByHashTag_Action - Platform: {0} - Hashtag: {1}".format(platform, hashtag))
         
-        result = get_trending_by_hashtag(platform, hashtag)
+        result = get_trending_by_hashtag(platform, hashtag, sender_id)
         
         for video in result:
-            dispatcher.utter_message(text=video['title'], attachment=video['play'])
-
-        return [SlotSet('platform', 'tiktok')]
+            if(platform == 'tiktok'):
+                dispatcher.utter_message(text=video['title'], attachment=video['play'])
+            else:
+                dispatcher.utter_message(text='{0} - {1}'.format(video['title'], video['image']))
+        return []
 
 class ActionTrendingByTikTokCategory(Action):
 
@@ -179,7 +187,7 @@ class ActionSeeMore(Action):
         
         sender_id = most_recent_state['sender_id']
         
-        if platform and hashtag:
+        if platform == 'tiktok' and hashtag:
             result = get_trending_by_hashtag(platform, hashtag)
         
             for video in result:
@@ -188,20 +196,13 @@ class ActionSeeMore(Action):
             return []
         
         if platform == 'youtube':
-            if youtubeCategory!= None:
-                results = get_trending_by_category(youtubeCategory, sender_id)
 
-                for result in results:    
-                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-                    
-                return []
-            else: 
-                results = get_trending(sender_id)
+            results = get_more_youtube_trending(sender_id)
+            
+            for result in results:    
+                dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
                 
-                for result in results:    
-                    dispatcher.utter_message(text='{0} - {1}'.format(result['title'], result['image']))
-                    
-                return []
+            return []
 
         if tiktokCategory:
             dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))
@@ -209,5 +210,65 @@ class ActionSeeMore(Action):
             for result in results:    
                 dispatcher.utter_message(text='{0} - {1}'.format(result['desc'], result['url']))
                 dispatcher.utter_attachment(result['videos'][0]['url'])
+        
+        return []
+    
+class ActionTrendIsBad(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_bad"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Xin lỗi bạn, mình sẽ cố gắng hơn')
+        
+        print("TrendIsBad_Action")
+        
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([0, 1]))
+        
+        return []
+
+class ActionTrendIsNormal(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_normal"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Cảm ơn bạn, chúc bạn một ngày tốt lành')
+        
+        print("TrendIsNormal_Action")
+        
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([2, 3]))
+        
+        return []
+
+class ActionTrendIsGood(Action):
+    
+    def name(self) -> Text:
+        return "action_trend_is_good"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(text='Cảm ơn bạn nhiều, bot sẽ cải thiện và giúp đỡ bạn nhiều hơn')
+        
+        print("TrendIsGood_Action")
+                
+        most_recent_state = tracker.current_state()
+        
+        sender_id = most_recent_state['sender_id']
+        
+        user_vote(sender_id, random.choice([4, 5]))
         
         return []

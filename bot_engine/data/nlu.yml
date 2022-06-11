@@ -280,6 +280,30 @@ nlu:
       - xem thêm nữa đi nè
       - một vài cái nữa đi
       - xem thêm trend đi
+      - mình muốn xem thêm một vài trend
+      - có thể cho mình xem thêm không
+      - còn gì nữa không nhỉ
+
+  - intent: trend_is_bad
+    examples: |
+      - những trend hôm nay tệ quá
+      - trend này không hay
+      - bot hôm nay giới thiệu tệ quá
+      - không được hay lắm
+      - bot giới thiệu trend không hay lắm
+
+  - intent: trend_is_normal
+    examples: |
+      - trend tạm được
+      - những trend này cũng được
+      - cũng khá ổn
+
+  - intent: trend_is_good
+    examples: |
+      - trend hôm nay hay quá
+      - hôm nay bot giới thiệu hay quá
+      - trend hay quá bot ơi
+      - mọi giới thiệu trend hôm nay đều hay
 
   - lookup: hashtag
     examples: |

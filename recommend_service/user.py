@@ -1,3 +1,7 @@
+from recommend_service.item import get_item_num
+import os
+
+
 def add_new_user(userId):
     if get_user_num (userId) != 0:
         return
@@ -28,5 +32,88 @@ def get_user_num(userId):
     finally:
         f.close()
 
-def add(userId, itemId, rate):
-    return 1
+def user_watched(userNum, itemNum):
+    try:
+        userWatchFilePath = "../recommend_service/user_watch/{0}.dat".format(userNum)
+        
+        f=open(userWatchFilePath,"a+")
+        
+        result=str(itemNum) + "\n"
+        
+        f.write(result)
+    finally:
+        f.close()
+
+def is_watched(userNum, itemNum):
+    userWatchFile = "../recommend_service/user_watch/{0}.dat".format(userNum)
+    
+    if not os.path.exists(userWatchFile):
+        return False
+    
+    try:
+        f=open(userWatchFile,"r")
+        
+        text=f.readlines()
+        
+        for t in text:  
+            if str(itemNum).rstrip() == str(t).rstrip():
+                f.close()
+                return True
+        f.close()
+        return False
+    except:
+        f.close()
+        return False
+
+def user_vote(userID, rate):
+    userNum=get_user_num(userID)
+    
+    voteFile = "../recommend_service/vote.dat"
+    userWatchFile = "../recommend_service/user_watch/{0}.dat".format(userNum)
+    
+    if not os.path.exists(userWatchFile):
+        return
+    
+    fuW = open(userWatchFile,"r")
+    
+    userWatcheds = fuW.readlines()
+    
+    for itemNum in userWatcheds:
+        flag = 0
+        
+        try:
+            f = open(voteFile,"r")
+            
+            text = f.readlines()
+            
+            for t in text:
+                a = t.split()
+                
+                if (str(a[0]) == userNum and str(a[1]) == itemNum.rstrip()):
+                    
+                    b = text.index("{0} {1} {2}\n".format(a[0], a[1], a[2]))
+                    
+                    text[b] = "{0} {1} {2}.\n".format(str(userNum), itemNum.rstrip(), str(rate))
+                    
+                    flag = 1
+                    
+                    break
+        finally:
+            f.close()
+            
+        if flag == 0:
+            try:
+                f = open(voteFile,"a+")
+                
+                result = "{0} {1} {2}.\n".format(str(userNum), itemNum.rstrip(), str(rate))
+                     
+                f.write(result)
+            finally:
+                f.close()
+        else:
+            try:
+                f=open(voteFile,"w")
+                
+                f.writelines(text)
+            finally:
+                f.close()
