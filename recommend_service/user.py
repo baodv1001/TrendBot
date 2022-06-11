@@ -45,25 +45,28 @@ def user_watched(userNum, itemNum):
         f.close()
 
 def is_watched(userNum, itemNum):
+    userWatchFile = "../recommend_service/user_watch/{0}.dat".format(userNum)
+    
+    if not os.path.exists(userWatchFile):
+        return False
+    
     try:
-        userWatchFilePath = "../recommend_service/user_watch/{0}.dat".format(userNum)
-        
-        f=open(userWatchFilePath,"r")
+        f=open(userWatchFile,"r")
         
         text=f.readlines()
         
-        for t in text:
-            if str(itemNum) == str(t):
+        for t in text:  
+            if str(itemNum).rstrip() == str(t).rstrip():
+                f.close()
                 return True
+        f.close()
         return False
-    finally:
+    except:
+        f.close()
         return False
-    
 
 def user_vote(userID, rate):
     userNum=get_user_num(userID)
-    
-    flag = 0
     
     voteFile = "../recommend_service/vote.dat"
     userWatchFile = "../recommend_service/user_watch/{0}.dat".format(userNum)
@@ -76,6 +79,8 @@ def user_vote(userID, rate):
     userWatcheds = fuW.readlines()
     
     for itemNum in userWatcheds:
+        flag = 0
+        
         try:
             f = open(voteFile,"r")
             
@@ -84,7 +89,7 @@ def user_vote(userID, rate):
             for t in text:
                 a = t.split()
                 
-                if (str(a[0]) == userNum and str(a[1]) == itemNum.rstrip() and str(a[0]) != '\n'):
+                if (str(a[0]) == userNum and str(a[1]) == itemNum.rstrip()):
                     
                     b = text.index("{0} {1} {2}\n".format(a[0], a[1], a[2]))
                     
@@ -98,10 +103,10 @@ def user_vote(userID, rate):
             
         if flag == 0:
             try:
-                f=open(voteFile,"a+")
+                f = open(voteFile,"a+")
                 
                 result = "{0} {1} {2}.\n".format(str(userNum), itemNum.rstrip(), str(rate))
-                
+                     
                 f.write(result)
             finally:
                 f.close()
