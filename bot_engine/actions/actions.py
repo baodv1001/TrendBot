@@ -136,7 +136,7 @@ class ActionTrendingByTikTokCategory(Action):
             dispatcher.utter_message(text='Những trend mới nhất trên tiktok theo {0} là :'.format(tiktokCategory))
             results = get_tiktok_list_trend_by_category(tiktokCategory)
             for result in results:    
-                dispatcher.utter_message(text='{0} - {1}'.format(result['desc'], result['url']))
+                dispatcher.utter_message(text='{0} - {1}'.format(result['name'], result['url']))
                 dispatcher.utter_attachment(result['videos'][0]['url'])
         else:
             dispatcher.utter_message(text="Em chưa hiểu thể loại anh/chị muốn chọn, vui lòng chọn lại ạ!")
