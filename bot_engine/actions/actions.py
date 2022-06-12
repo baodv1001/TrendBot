@@ -17,7 +17,6 @@ from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
 
-
 class GetName(Action):
     def name(self):
         return 'action_name'
@@ -259,7 +258,7 @@ class ActionTrendIsNormal(Action):
         
         sender_id = most_recent_state['sender_id']
         
-        user_vote(sender_id, random.choice([2, 3]))
+        user_vote(sender_id, random.choice([2, 3, 4]))
         
         return []
 
@@ -279,6 +278,6 @@ class ActionTrendIsGood(Action):
         
         sender_id = most_recent_state['sender_id']
         
-        user_vote(sender_id, random.choice([4, 5]))
+        user_vote(sender_id, random.choice([5]))
         
         return []
